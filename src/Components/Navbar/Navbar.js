@@ -18,17 +18,22 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ChairIcon from "@mui/icons-material/Chair";
 import { motion } from "framer-motion";
 import SignUp from "../SignUp/SignUp";
 import { AuthContext } from "../../Context/Context";
 import SignIn from "../SignIn/SignIn";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
+  const { user, logOut, authControl, toggleDrawer, state, anchor } =
+    React.useContext(AuthContext);
+  //console.log(user?.uid);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { toggleDrawer, state, authControl } = React.useContext(AuthContext);
+  let navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -71,12 +76,23 @@ function Navbar() {
     </Box>
   );
 
+  const handleBtn = () => {
+    logOut()
+      .then(() => {
+        navigate("/");
+        toast.success("Logged Out");
+        toggleDrawer(anchor, false);
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <motion.div
       initial={{ y: -250 }}
       animate={{ y: 0 }}
       transition={{ delay: 0.2, type: "spring" }}
     >
+      <ToastContainer position="top-center" autoClose={1000} />
       <AppBar
         position="static"
         sx={{ px: { md: 5, xs: 0 }, backgroundColor: "white", color: "black" }}
@@ -208,6 +224,41 @@ function Navbar() {
                     </Typography>
                   </Link>
                 </MenuItem>
+                {user?.uid && (
+                  <>
+                    {" "}
+                    <MenuItem
+                      onClick={handleCloseNavMenu}
+                      sx={{
+                        "&:hover": {
+                          backgroundColor: "#6e3e37",
+                        },
+                      }}
+                    >
+                      <Link to="/dashboard" style={{ textDecoration: "none" }}>
+                        <Typography textAlign="center" sx={{ color: "black" }}>
+                          Dashboard
+                        </Typography>
+                      </Link>
+                    </MenuItem>
+                    <MenuItem
+                      onClick={handleCloseNavMenu}
+                      sx={{
+                        "&:hover": {
+                          backgroundColor: "#6e3e37",
+                        },
+                      }}
+                    >
+                      <Typography
+                        textAlign="center"
+                        sx={{ color: "black" }}
+                        onClick={handleBtn}
+                      >
+                        Log Out
+                      </Typography>
+                    </MenuItem>
+                  </>
+                )}
               </Menu>
             </Box>
             <Link to="/" style={{ color: "black" }}>
@@ -326,6 +377,25 @@ function Navbar() {
                   Contact
                 </Button>
               </Link>
+              {user?.uid && (
+                <Box onClick={handleBtn}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      color: "black",
+                      display: "block",
+                      fontFamily: "overpass,sherif-pro",
+                      "&:hover": {
+                        backgroundColor: "#6e3e37",
+                        transform: "scale(1.1)",
+                      },
+                    }}
+                  >
+                    Log Out
+                  </Button>
+                </Box>
+              )}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
@@ -349,28 +419,31 @@ function Navbar() {
                     },
                   }}
                 ></LocalMallOutlinedIcon>
-
-                {["right"].map((anchor) => (
-                  <React.Fragment key={anchor}>
-                    <Person2OutlinedIcon
-                      sx={{
-                        fontSize: { xs: "25px", md: "30px" },
-                        cursor: "pointer",
-                        "&:hover": {
-                          transform: "scale(1.7)",
-                        },
-                      }}
-                      onClick={toggleDrawer(anchor, true)}
-                    ></Person2OutlinedIcon>
-                    <Drawer
-                      anchor={anchor}
-                      open={state[anchor]}
-                      onClose={toggleDrawer(anchor, false)}
-                    >
-                      {list(anchor)}
-                    </Drawer>
-                  </React.Fragment>
-                ))}
+                {!user?.uid && (
+                  <>
+                    {["right"].map((anchor) => (
+                      <React.Fragment key={anchor}>
+                        <Person2OutlinedIcon
+                          sx={{
+                            fontSize: { xs: "25px", md: "30px" },
+                            cursor: "pointer",
+                            "&:hover": {
+                              transform: "scale(1.7)",
+                            },
+                          }}
+                          onClick={toggleDrawer(anchor, true)}
+                        ></Person2OutlinedIcon>
+                        <Drawer
+                          anchor={anchor}
+                          open={state[anchor]}
+                          onClose={toggleDrawer(anchor, false)}
+                        >
+                          {list(anchor)}
+                        </Drawer>
+                      </React.Fragment>
+                    ))}
+                  </>
+                )}
               </Box>
             </Box>
           </Toolbar>

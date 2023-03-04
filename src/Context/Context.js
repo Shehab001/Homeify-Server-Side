@@ -17,10 +17,10 @@ const Context = ({ children }) => {
   const [user, setUser] = useState({});
   const [authControl, setAuthControl] = useState("signin");
 
-  console.log(authControl);
   const [state, setState] = React.useState({
     right: false,
   });
+  // console.log(authControl);
 
   const toggleDrawer = (anchor, open) => (event) => {
     // alert("hi");
