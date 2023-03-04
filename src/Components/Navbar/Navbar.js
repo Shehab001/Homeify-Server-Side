@@ -28,7 +28,7 @@ import SignIn from "../SignIn/SignIn";
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { toggleDrawer, state } = React.useContext(AuthContext);
+  const { toggleDrawer, state, authControl } = React.useContext(AuthContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -57,7 +57,16 @@ function Navbar() {
       onKeyDown={toggleDrawer(anchor, true)}
     >
       <Divider />
-      <SignUp></SignUp>
+      {authControl === "signin" ? (
+        <>
+          <SignIn></SignIn>
+        </>
+      ) : (
+        <>
+          <SignUp></SignUp>
+        </>
+      )}
+
       <Divider />
     </Box>
   );
