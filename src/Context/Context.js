@@ -15,10 +15,23 @@ const auth = getAuth(app);
 
 const Context = ({ children }) => {
   const [user, setUser] = useState({});
-  console.log(user);
+  // console.log(user);
   const [state, setState] = React.useState({
     right: false,
   });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    // alert("hi");
+    console.log(anchor, open);
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -59,6 +72,7 @@ const Context = ({ children }) => {
     providerLogin,
     state,
     setState,
+    toggleDrawer,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -11,20 +11,24 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import DrawerNavbar from "../Small/DrawerNavbar";
+
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 import ChairIcon from "@mui/icons-material/Chair";
 import { motion } from "framer-motion";
+import SignUp from "../SignUp/SignUp";
+import { AuthContext } from "../../Context/Context";
+import SignIn from "../SignIn/SignIn";
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { toggleDrawer, state } = React.useContext(AuthContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,29 +45,19 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
-  const [state, setState] = React.useState({
-    right: false,
-  });
   //  console.log(state);
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 400 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 400,
+      }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onClick={toggleDrawer(anchor, true)}
+      onKeyDown={toggleDrawer(anchor, true)}
     >
-      hi
+      <Divider />
+      <SignUp></SignUp>
       <Divider />
     </Box>
   );
