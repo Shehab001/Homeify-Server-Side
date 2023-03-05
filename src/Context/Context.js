@@ -20,7 +20,7 @@ const Context = ({ children }) => {
   const [state, setState] = React.useState({
     right: false,
   });
-  // console.log(authControl);
+  console.log(state.right);
 
   const toggleDrawer = (anchor, open) => (event) => {
     // alert("hi");

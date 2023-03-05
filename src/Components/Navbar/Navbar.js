@@ -28,7 +28,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
-  const { user, logOut, authControl, toggleDrawer, state, anchor } =
+  const { user, logOut, authControl, toggleDrawer, state, setState } =
     React.useContext(AuthContext);
   //console.log(user?.uid);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -50,7 +50,7 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
-  //  console.log(state);
+  console.log(state);
 
   const list = (anchor) => (
     <Box
@@ -79,9 +79,13 @@ function Navbar() {
   const handleBtn = () => {
     logOut()
       .then(() => {
-        navigate("/");
         toast.success("Logged Out");
-        toggleDrawer(anchor, false);
+        setState((prevState) => {
+          let right = Object.assign({}, prevState.right); // creating copy of state variable right
+          console.log(right);
+          right = false; // update the name property, assign a new value
+          return { right }; // return new object jasper object
+        });
       })
       .catch((error) => console.error(error));
   };
