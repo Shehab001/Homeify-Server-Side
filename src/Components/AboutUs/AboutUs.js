@@ -9,7 +9,7 @@ import img2 from "../../Assets/contact_2-1536x1006.jpg";
 const AboutUs = () => {
   return (
     <>
-      <Box>
+      <Box mb={10}>
         <Box
           sx={{
             width: { xs: "80%", sm: "70%", md: "60%" },

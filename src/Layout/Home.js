@@ -6,6 +6,8 @@ import StayHome from "../Components/StayHome/StayHome";
 import Footer from "../Components/Footer/Footer";
 import AboutUs from "../Components/AboutUs/AboutUs";
 import OurTeam from "../Components/AboutUs/OurTeam";
+import Company from "../Components/AboutUs/Company";
+import Contact from "../Components/Contact.js/Contact";
 
 const Home = () => {
   return (
@@ -16,6 +18,8 @@ const Home = () => {
       <StayHome></StayHome>
       <AboutUs></AboutUs>
       <OurTeam></OurTeam>
+      {/* <Company></Company> */}
+      <Contact></Contact>
       <Footer></Footer>
     </div>
   );

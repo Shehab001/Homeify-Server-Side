@@ -1,4 +1,11 @@
-import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Divider,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { motion } from "framer-motion";
@@ -9,6 +16,7 @@ import img3 from "../../Assets/Rectangle-618-2.jpg";
 const OurTeam = () => {
   return (
     <>
+      <Divider></Divider>
       <Box>
         <Box>
           <motion.div
