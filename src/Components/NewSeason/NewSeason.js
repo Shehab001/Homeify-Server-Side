@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const NewSeason = () => {
   return (
     <>
-      <Box my={10}>
+      <Box my={10} overflow={"hidden"}>
         <Grid container spacing={2}>
           <Grid xs={12} md={6} sx={{ p: 5 }}>
             <Box sx={{ width: "80%", pl: 5 }}>

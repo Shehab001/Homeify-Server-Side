@@ -58,7 +58,7 @@ const OurTeam = () => {
             </Box>
           </motion.div>
         </Box>
-        <Box>
+        <Box pb={10}>
           <Grid container spacing={2} px={10}>
             <Grid item xs={12} sm={12} md={4}>
               <Card sx={{ maxWidth: 345 }}>

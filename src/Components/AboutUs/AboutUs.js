@@ -9,7 +9,7 @@ import img2 from "../../Assets/contact_2-1536x1006.jpg";
 const AboutUs = () => {
   return (
     <>
-      <Box mb={10}>
+      <Box mb={10} overflow={"hidden"}>
         <Box
           sx={{
             width: { xs: "80%", sm: "70%", md: "60%" },
@@ -74,7 +74,7 @@ const AboutUs = () => {
                   <Typography
                     sx={{
                       fontFamily: "jost",
-                      fontSize: { xs: "30px", sm: "40px", xl: "60px" },
+                      fontSize: { xs: "25px", sm: "40px", xl: "60px" },
                       my: 1,
                       width: { xs: "350px", sm: "506px" },
                       lineHeight: 1,
@@ -136,7 +136,7 @@ const AboutUs = () => {
                   <Typography
                     sx={{
                       fontFamily: "jost",
-                      fontSize: { xs: "30px", sm: "40px", xl: "60px" },
+                      fontSize: { xs: "25px", sm: "40px", xl: "60px" },
                       my: 1,
                       width: { xs: "350px", sm: "506px" },
                       lineHeight: 1,
