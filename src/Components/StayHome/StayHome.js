@@ -9,6 +9,7 @@ import img1 from "../../Assets/laura-davidson-1vIHVh9OaVI-unsplash.jpg";
 import img2 from "../../Assets/laura-davidson-ULP07chR5EQ-unsplash.jpg";
 import img3 from "../../Assets/nathalie-jolie-6-xcHVkwj0c-unsplash.jpg";
 import CardContent from "@mui/material/CardContent";
+import { motion } from "framer-motion";
 
 const StayHome = () => {
   return (
@@ -23,37 +24,44 @@ const StayHome = () => {
       >
         <Divider />
         <Box>
-          <Box
-            sx={{
-              width: { xs: "80%", sm: "50%", md: "40%" },
-              textAlign: "center",
-              mx: "auto",
-              pt: 10,
-            }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 2 }}
           >
-            <Typography
+            {" "}
+            <Box
               sx={{
-                fontFamily: "jost",
-                fontSize: "25px",
-                letterSpacing: "5px",
+                width: { xs: "80%", sm: "50%", md: "40%" },
+                textAlign: "center",
+                mx: "auto",
+                pt: 10,
               }}
             >
-              Hand Made
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "jost",
-                fontSize: { xs: "35px", sm: "45px", md: "60px" },
-              }}
-            >
-              #stayhomeessentials
-            </Typography>
-            <Typography sx={{ fontFamily: "jost", fontSize: "18px", mt: 1 }}>
-              At Muuto, we take responsibility for our operations and reflect on
-              the choices we make and how our priorities affect the wellbeing of
-              people and the environment.
-            </Typography>
-          </Box>
+              <Typography
+                sx={{
+                  fontFamily: "jost",
+                  fontSize: "25px",
+                  letterSpacing: "5px",
+                }}
+              >
+                Hand Made
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "jost",
+                  fontSize: { xs: "35px", sm: "45px", md: "60px" },
+                }}
+              >
+                #stayhomeessentials
+              </Typography>
+              <Typography sx={{ fontFamily: "jost", fontSize: "18px", mt: 1 }}>
+                At Muuto, we take responsibility for our operations and reflect
+                on the choices we make and how our priorities affect the
+                wellbeing of people and the environment.
+              </Typography>
+            </Box>
+          </motion.div>
 
           <Box m={10}>
             <Grid container spacing={2}>

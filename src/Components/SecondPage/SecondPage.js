@@ -20,7 +20,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   <LocalMallIcon
                     sx={{
@@ -36,7 +36,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   <Typography
                     sx={{
@@ -69,7 +69,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   {" "}
                   <LocalAtmIcon
@@ -85,7 +85,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   {" "}
                   <Typography
@@ -118,7 +118,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   <QueryBuilderIcon
                     sx={{
@@ -133,7 +133,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   <Typography
                     sx={{
@@ -165,7 +165,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   <PaymentIcon
                     sx={{
@@ -180,7 +180,7 @@ const SecondPage = () => {
                 <motion.div
                   initial={{ y: 150, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ duration: 1 }}
                 >
                   {" "}
                   <Typography
