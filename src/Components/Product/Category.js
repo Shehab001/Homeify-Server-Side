@@ -8,6 +8,7 @@ import { Box } from "@mui/system";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { motion } from "framer-motion";
 
 export default class Category extends Component {
   render() {
@@ -47,225 +48,240 @@ export default class Category extends Component {
       ],
     };
     return (
-      <div className="mainn">
-        <Typography
-          sx={{
-            mt: 5,
-            fontFamily: "jest",
-            fontSize: "30px",
-            fontWeight: "bold",
-            letterSpacing: "5px",
-          }}
+      <>
+        {" "}
+        <motion.div
+          initial={{ x: -150, opacity: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
         >
-          Category
-        </Typography>
-        <Slider {...settings}>
-          <div className="">
-            <Box py={5} px={1}>
-              <Card
-                sx={{
-                  Width: 275,
-                  backgroundColor: "#f6f6f4",
-                  py: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "1s",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography
+          <div className="mainn">
+            <Typography
+              sx={{
+                mt: 5,
+                fontFamily: "jest",
+                fontSize: "30px",
+                fontWeight: "bold",
+                letterSpacing: "5px",
+              }}
+            >
+              Category
+            </Typography>
+            <Slider {...settings}>
+              <div className="">
+                <Box py={5} px={1}>
+                  <Card
                     sx={{
-                      fontSize: 25,
-                      fontFamily: "jest",
-                      fontWeight: "bold",
-                      color: "black",
+                      Width: 275,
+                      backgroundColor: "#f6f6f4",
+                      py: 1,
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "1s",
+                      },
                     }}
                   >
-                    Living
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </div>
-          <div>
-            <Box py={5} px={1}>
-              <Card
-                sx={{
-                  Width: 275,
-                  backgroundColor: "#f6f6f4",
-                  py: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "1s",
-                  },
-                  borderRadius: "none",
-                }}
-              >
-                <CardContent>
-                  <Typography
+                    <CardContent sx={{ p: 0, pb: "0px!important" }}>
+                      <Typography
+                        sx={{
+                          fontSize: 25,
+                          fontFamily: "jest",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        Living
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              </div>
+              <div>
+                <Box py={5} px={1}>
+                  <Card
                     sx={{
-                      fontSize: 25,
-                      fontFamily: "jest",
-                      fontWeight: "bold",
-                      color: "black",
+                      Width: 275,
+                      backgroundColor: "#f6f6f4",
+                      py: 1,
+
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "1s",
+                      },
+                      borderRadius: "none",
                     }}
                   >
-                    Bedroom
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </div>
-          <div>
-            <Box py={5} px={1}>
-              <Card
-                sx={{
-                  Width: 275,
-                  backgroundColor: "#f6f6f4",
-                  py: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "1s",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography
+                    <CardContent sx={{ p: 0, pb: "0px!important" }}>
+                      <Typography
+                        sx={{
+                          fontSize: 25,
+                          fontFamily: "jest",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        Bedroom
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              </div>
+              <div>
+                <Box py={5} px={1}>
+                  <Card
                     sx={{
-                      fontSize: 25,
-                      fontFamily: "jest",
-                      fontWeight: "bold",
-                      color: "black",
+                      Width: 275,
+                      backgroundColor: "#f6f6f4",
+                      py: 1,
+
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "1s",
+                      },
                     }}
                   >
-                    Kitchen
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </div>
-          <div>
-            <Box py={5} px={1}>
-              <Card
-                sx={{
-                  Width: 275,
-                  backgroundColor: "#f6f6f4",
-                  py: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "1s",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography
+                    <CardContent sx={{ p: 0, pb: "0px!important" }}>
+                      <Typography
+                        sx={{
+                          fontSize: 25,
+                          fontFamily: "jest",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        Kitchen
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              </div>
+              <div>
+                <Box py={5} px={1}>
+                  <Card
                     sx={{
-                      fontSize: 25,
-                      fontFamily: "jest",
-                      fontWeight: "bold",
-                      color: "black",
+                      Width: 275,
+                      backgroundColor: "#f6f6f4",
+                      py: 1,
+
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "1s",
+                      },
                     }}
                   >
-                    Kids Room
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </div>
-          <div>
-            <Box py={5} px={1}>
-              <Card
-                sx={{
-                  Width: 275,
-                  backgroundColor: "#f6f6f4",
-                  py: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "1s",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography
+                    <CardContent sx={{ p: 0, pb: "0px!important" }}>
+                      <Typography
+                        sx={{
+                          fontSize: 25,
+                          fontFamily: "jest",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        Kids Room
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              </div>
+              <div>
+                <Box py={5} px={1}>
+                  <Card
                     sx={{
-                      fontSize: 25,
-                      fontFamily: "jest",
-                      fontWeight: "bold",
-                      color: "black",
+                      Width: 275,
+                      backgroundColor: "#f6f6f4",
+                      py: 1,
+
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "1s",
+                      },
                     }}
                   >
-                    Institional
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </div>
-          <div>
-            <Box py={5} px={1}>
-              <Card
-                sx={{
-                  Width: 275,
-                  backgroundColor: "#f6f6f4",
-                  py: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "1s",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography
+                    <CardContent sx={{ p: 0, pb: "0px!important" }}>
+                      <Typography
+                        sx={{
+                          fontSize: 25,
+                          fontFamily: "jest",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        Institional
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              </div>
+              <div>
+                <Box py={5} px={1}>
+                  <Card
                     sx={{
-                      fontSize: 25,
-                      fontFamily: "jest",
-                      fontWeight: "bold",
-                      color: "black",
+                      Width: 275,
+                      backgroundColor: "#f6f6f4",
+                      py: 1,
+
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "1s",
+                      },
                     }}
                   >
-                    Door
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </div>
-          <div>
-            <Box py={5} px={1}>
-              <Card
-                sx={{
-                  Width: 275,
-                  backgroundColor: "#f6f6f4",
-                  py: 1,
-                  cursor: "pointer",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "1s",
-                  },
-                }}
-              >
-                <CardContent>
-                  <Typography
+                    <CardContent sx={{ p: 0, pb: "0px!important" }}>
+                      <Typography
+                        sx={{
+                          fontSize: 25,
+                          fontFamily: "jest",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        Door
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              </div>
+              <div>
+                <Box py={5} px={1}>
+                  <Card
                     sx={{
-                      fontSize: 25,
-                      fontFamily: "jest",
-                      fontWeight: "bold",
-                      color: "black",
+                      Width: 275,
+                      backgroundColor: "#f6f6f4",
+                      py: 1,
+
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.1)",
+                        transition: "1s",
+                      },
                     }}
                   >
-                    Interior
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
+                    <CardContent sx={{ p: 0, pb: "0px!important" }}>
+                      <Typography
+                        sx={{
+                          fontSize: 25,
+                          fontFamily: "jest",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        Interior
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              </div>
+            </Slider>
           </div>
-        </Slider>
-      </div>
+        </motion.div>
+      </>
     );
   }
 }

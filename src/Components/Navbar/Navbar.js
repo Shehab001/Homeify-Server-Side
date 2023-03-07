@@ -208,11 +208,11 @@ function Navbar() {
                     },
                   }}
                 >
-                  <Link to="/about Us" style={{ textDecoration: "none" }}>
+                  <a href="#aboutus" style={{ textDecoration: "none" }}>
                     <Typography textAlign="center" sx={{ color: "black" }}>
                       About Us
                     </Typography>
-                  </Link>
+                  </a>
                 </MenuItem>
                 <MenuItem
                   onClick={handleCloseNavMenu}
@@ -222,11 +222,11 @@ function Navbar() {
                     },
                   }}
                 >
-                  <Link to="/contact" style={{ textDecoration: "none" }}>
+                  <a href="#contact" style={{ textDecoration: "none" }}>
                     <Typography textAlign="center" sx={{ color: "black" }}>
                       Contact
                     </Typography>
-                  </Link>
+                  </a>
                 </MenuItem>
                 {user?.uid && (
                   <>
@@ -347,7 +347,7 @@ function Navbar() {
                   Products
                 </Button>
               </Link>
-              <Link to="/aboutus" style={{ textDecoration: "none" }}>
+              <a href="#aboutus" style={{ textDecoration: "none" }}>
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{
@@ -363,8 +363,8 @@ function Navbar() {
                 >
                   About Us
                 </Button>
-              </Link>
-              <Link to="/contact" style={{ textDecoration: "none" }}>
+              </a>
+              <a href="#contact" style={{ textDecoration: "none" }}>
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{
@@ -380,7 +380,7 @@ function Navbar() {
                 >
                   Contact
                 </Button>
-              </Link>
+              </a>
               {user?.uid && (
                 <Box onClick={handleBtn}>
                   <Button

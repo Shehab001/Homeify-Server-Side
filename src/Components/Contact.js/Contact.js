@@ -38,7 +38,7 @@ const Contact = () => {
     <>
       <ToastContainer position="top-center" autoClose={1000} />
       <Divider></Divider>
-      <Box py={10} overflow={"hidden"}>
+      <Box id="contact" py={10} overflow={"hidden"}>
         <Typography
           sx={{
             color: "black",

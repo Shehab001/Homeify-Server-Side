@@ -19,6 +19,7 @@ const Home = () => {
       <SecondPage></SecondPage>
 
       <Category></Category>
+      <ProductNavbar></ProductNavbar>
       <NewSeason></NewSeason>
       <StayHome></StayHome>
       <AboutUs></AboutUs>
