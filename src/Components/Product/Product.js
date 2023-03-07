@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Loader from "../Small/Loader/Loader";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   const [data, setData] = useState([]);
@@ -51,28 +52,36 @@ const Product = () => {
                           transition={{ duration: 1 }}
                         >
                           {" "}
-                          <Card
-                            sx={{
-                              backgroundColor: "#e6e6e4",
-                              cursor: "pointer",
-                              "&:hover": {
-                                transform: "scale(1.1)",
-                                transition: "1s",
-                              },
-                            }}
+                          <Link
+                            to={`/singleservice/${product._id}`}
+                            style={{ textDecoration: "none" }}
                           >
-                            <CardMedia
-                              component="img"
-                              alt="green iguana"
-                              height="140"
-                              image={product.img1}
-                            />
-                            <Typography
-                              sx={{ fontFamily: "jest", letterSpacing: "3px" }}
+                            <Card
+                              sx={{
+                                backgroundColor: "#e6e6e4",
+                                cursor: "pointer",
+                                "&:hover": {
+                                  transform: "scale(1.1)",
+                                  transition: "1s",
+                                },
+                              }}
                             >
-                              {product.name}
-                            </Typography>
-                          </Card>
+                              <CardMedia
+                                component="img"
+                                alt="green iguana"
+                                height="140"
+                                image={product.img1}
+                              />
+                              <Typography
+                                sx={{
+                                  fontFamily: "jest",
+                                  letterSpacing: "3px",
+                                }}
+                              >
+                                {product.name}
+                              </Typography>
+                            </Card>
+                          </Link>
                         </motion.div>
                       </Grid>
                     </>

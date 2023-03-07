@@ -17,16 +17,13 @@ const Home = () => {
     <div>
       <Carousal></Carousal>
       <SecondPage></SecondPage>
-
       <Category></Category>
       <ProductNavbar></ProductNavbar>
       <NewSeason></NewSeason>
       <StayHome></StayHome>
       <AboutUs></AboutUs>
       <OurTeam></OurTeam>
-
       <Contact></Contact>
-      <Footer></Footer>
       {/* <Company></Company> */}
     </div>
   );
