@@ -89,25 +89,18 @@ const Contact = () => {
                 //justifyContent={"center"}
               >
                 <Grid item sm={6}>
-                  <motion.div
-                    initial={{ x: -350, opacity: 0 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1 }}
+                  <Typography
+                    sx={{
+                      textAlign: "start",
+                      fontFamily: "jost",
+                      fontWeight: "bold",
+                      fontSize: "25px",
+                      pl: 3,
+                      mb: 1,
+                    }}
                   >
-                    {" "}
-                    <Typography
-                      sx={{
-                        textAlign: "start",
-                        fontFamily: "jost",
-                        fontWeight: "bold",
-                        fontSize: "25px",
-                        pl: 3,
-                        mb: 1,
-                      }}
-                    >
-                      The Office
-                    </Typography>
-                  </motion.div>
+                    The Office
+                  </Typography>
 
                   <Grid container spacing={2} alignItems={"center"}>
                     <Grid item xs={3}>

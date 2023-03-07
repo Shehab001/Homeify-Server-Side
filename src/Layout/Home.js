@@ -8,12 +8,17 @@ import AboutUs from "../Components/AboutUs/AboutUs";
 import OurTeam from "../Components/AboutUs/OurTeam";
 import Company from "../Components/AboutUs/Company";
 import Contact from "../Components/Contact.js/Contact";
+import ProductNavbar from "../Components/Product/ProductNavbar";
+import Cart from "../Components/Product/Category";
+import Category from "../Components/Product/Category";
 
 const Home = () => {
   return (
     <div>
       <Carousal></Carousal>
       <SecondPage></SecondPage>
+
+      <Category></Category>
       <NewSeason></NewSeason>
       <StayHome></StayHome>
       <AboutUs></AboutUs>
