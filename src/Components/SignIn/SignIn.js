@@ -29,6 +29,19 @@ const SignIn = () => {
   const from = location.state?.from?.pathname || "/";
   const googleProvider = new GoogleAuthProvider();
 
+  const jwt = (user) => {
+    //jwt
+    fetch("http://localhost:5000/jwt", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => localStorage.setItem("token", data.token));
+  };
+
   const handleBtn = () => {
     // signInWithPopup(googleProvider)
     setSpin(true);
@@ -38,6 +51,7 @@ const SignIn = () => {
         const user = result.user;
         // setUser(user);
         saveUser(user.email, user.uid);
+        jwt(user);
         setSpin(false);
         toast.success("Logged In");
         navigate(from, { replace: true });
@@ -56,7 +70,7 @@ const SignIn = () => {
       uid: uid,
     };
     console.log(userr);
-    fetch("https://usedpc-server-shehab001.vercel.app/saveuser", {
+    fetch("http://localhost:5000/saveuser", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -66,11 +80,11 @@ const SignIn = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.modifiedCount > 0) {
+        if (data.upsertedId) {
           toast.success("User Added");
           // console.log("successfull");
         } else {
-          toast.error("Canceled");
+          //toast.error("Canceled");
           // console.log("unsucess");
         }
       });
@@ -90,7 +104,7 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential;
-
+        jwt(user);
         setSpin(false);
         toast.success("Logged In");
         setError("");
