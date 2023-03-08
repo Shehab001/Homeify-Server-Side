@@ -32,9 +32,42 @@ export default function SignUp() {
   } = React.useContext(AuthContext);
   const [error, setError] = React.useState("");
   const [spin, setSpin] = React.useState(false);
+  const [role, setRole] = React.useState("user");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  //console.log(role);
+
+  const saveUser = (name, email, role, phn, uid) => {
+    //console.log(name, url, email);
+    const userr = {
+      name: name,
+      email: email,
+      role: role,
+      uid: uid,
+      phn: phn,
+    };
+    console.log(userr);
+    fetch("http://localhost:5000/saveuser", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userr),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //console.log(data);
+        if (data.acknowledged) {
+          //window.location.reload(false);
+          toast.success("User Added");
+          // console.log("successfull");
+        } else {
+          toast.error("Canceled");
+          // console.log("unsucess");
+        }
+      });
+  };
 
   const handleSubmit = (event) => {
     setSpin(true);
@@ -45,8 +78,8 @@ export default function SignUp() {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const img = form.img.value;
-    console.log(name, password, img, email);
+    const phn = form.phn.value;
+    console.log(name, password, email, phn);
 
     if (password.length < 6) {
       setError("Password should be 6 characters or more.");
@@ -61,8 +94,9 @@ export default function SignUp() {
         // setSuccess(true);
         form.reset();
         setError("");
+        saveUser(name, email, role, phn, user.uid);
 
-        handleUpdateUserProfile(img, name);
+        handleUpdateUserProfile(name, phn);
         setSpin(false);
         navigate(from, { replace: true });
         toast.success("Logged In");
@@ -73,12 +107,12 @@ export default function SignUp() {
         setError(errorMessage);
         // ..
       });
-    const handleUpdateUserProfile = (img, name) => {
+    const handleUpdateUserProfile = (name) => {
       const profile = {
-        photoURL: img,
         displayName: name,
+        phoneNumber: phn,
       };
-      console.log(profile);
+      // console.log(profile);
       updateUserProfile(profile)
         .then(() => {})
         .catch((error) => console.error(error));
@@ -86,7 +120,7 @@ export default function SignUp() {
   };
 
   return (
-    <>
+    <Box overflow={"hidden"}>
       <ToastContainer position="top-center" autoClose={1000} />
       <motion.div
         initial={{ opacity: 0 }}
@@ -162,12 +196,15 @@ export default function SignUp() {
                           <TextField
                             required
                             fullWidth
-                            id="lastName"
-                            label="Image Link"
-                            name="img"
+                            id="phn"
+                            label="Contact"
+                            name="phn"
+                            type="text"
                             autoComplete="family-name"
+                            placeholder="+8801790199194"
                           />
                         </Grid>
+
                         <Grid item xs={12}>
                           <FormControlLabel
                             control={
@@ -178,6 +215,19 @@ export default function SignUp() {
                               />
                             }
                             label="Remember Me"
+                          />
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                value="seller"
+                                color="primary"
+                                sx={{ ml: 5 }}
+                                onClick={(event) => {
+                                  setRole(event.target.value);
+                                }}
+                              />
+                            }
+                            label="Seller"
                           />
                         </Grid>
                       </Grid>
@@ -212,6 +262,6 @@ export default function SignUp() {
           </>
         )}
       </motion.div>
-    </>
+    </Box>
   );
 }
