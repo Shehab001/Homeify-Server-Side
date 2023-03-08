@@ -37,6 +37,7 @@ const SignIn = () => {
       .then((result) => {
         const user = result.user;
         // setUser(user);
+        saveUser(user.email, user.uid);
         setSpin(false);
         toast.success("Logged In");
         navigate(from, { replace: true });
@@ -45,6 +46,33 @@ const SignIn = () => {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+  const saveUser = (email, uid) => {
+    //console.log(name, url, email);
+    const userr = {
+      email: email,
+      role: "buyer",
+      uid: uid,
+    };
+    console.log(userr);
+    fetch("https://usedpc-server-shehab001.vercel.app/saveuser", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userr),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("User Added");
+          // console.log("successfull");
+        } else {
+          toast.error("Canceled");
+          // console.log("unsucess");
+        }
       });
   };
 
@@ -62,6 +90,7 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential;
+
         setSpin(false);
         toast.success("Logged In");
         setError("");
