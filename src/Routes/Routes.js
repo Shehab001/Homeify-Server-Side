@@ -1,7 +1,18 @@
+import { Box } from "@mui/system";
 import { createBrowserRouter } from "react-router-dom";
+import AboutUs from "../Components/AboutUs/AboutUs";
+import OurTeam from "../Components/AboutUs/OurTeam";
+import Carousal from "../Components/Carousal/Carousal";
+import Contact from "../Components/Contact.js/Contact";
+import Dashboard from "../Components/Dashboard/Dashboard";
+import Navbar from "../Components/Navbar/Navbar";
+import Category from "../Components/Product/Category";
+import ProductNavbar from "../Components/Product/ProductNavbar";
+import SecondPage from "../Components/SecondPage/SecondPage";
 import SingleService from "../Components/SingleService/SingleService";
 import Home from "../Layout/Home";
 import Main from "../Layout/Main";
+import Private from "../Layout/Private";
 
 const router = createBrowserRouter([
   {
@@ -13,26 +24,45 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-      // {
-      //   path: "/signin",
-      //   element: <SignIn></SignIn>,
-      // },
-      // {
-      //   path: "/blogs",
-      //   element: <Blog></Blog>,
-      // },
-      // {
-      //   path: "/signup",
-      //   element: <SignUP></SignUP>,
-      // },
-      // {
-      //   path: "/myreview",
-      //   element: (
-      //     <Private>
-      //       <MyReview></MyReview>
-      //     </Private>
-      //   ),
-      // },
+      {
+        path: "aboutus",
+        element: (
+          <>
+            <Carousal></Carousal>
+            <AboutUs></AboutUs>
+            <OurTeam></OurTeam>
+          </>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <>
+            <Carousal></Carousal>
+            <Contact></Contact>
+          </>
+        ),
+      },
+      {
+        path: "/products",
+        element: (
+          <>
+            <Carousal></Carousal>
+            <SecondPage></SecondPage>
+            <Category></Category>
+            <ProductNavbar></ProductNavbar>
+            <Box mb={10}></Box>
+          </>
+        ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <Private>
+            <Dashboard></Dashboard>
+          </Private>
+        ),
+      },
       // {
       //   path: "/addservicee",
       //   element: <SingleService></SingleService>,

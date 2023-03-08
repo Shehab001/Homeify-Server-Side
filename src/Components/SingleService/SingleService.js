@@ -102,7 +102,7 @@ const SingleService = () => {
               <Typography
                 sx={{ fontFamily: "jest", letterSpacing: "2px", mt: 5 }}
               >
-                Price : {data.price}
+                Price : ৳ {data.price}
               </Typography>
               <Typography sx={{ fontFamily: "jest", letterSpacing: "2px" }}>
                 Quality : {data.quality}
@@ -123,14 +123,18 @@ const SingleService = () => {
                     label="Quantity"
                     type="number"
                     variant="outlined"
-                    sx={{ mr: 2 }}
+                    sx={{ mt: 2 }}
+                    required
                   />
                   <TextField
                     id="outlined-basic"
                     label="Exact Location"
                     type="text"
                     variant="outlined"
+                    sx={{ mt: { xs: 2 }, ml: { lg: 2 } }}
+                    required
                   />
+                  <br></br>
                   <Button
                     variant="outlined"
                     size="large"

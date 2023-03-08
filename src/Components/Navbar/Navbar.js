@@ -347,7 +347,7 @@ function Navbar() {
                   Products
                 </Button>
               </Link>
-              <a href="#aboutus" style={{ textDecoration: "none" }}>
+              <Link to="aboutus" style={{ textDecoration: "none" }}>
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{
@@ -363,8 +363,8 @@ function Navbar() {
                 >
                   About Us
                 </Button>
-              </a>
-              <a href="#contact" style={{ textDecoration: "none" }}>
+              </Link>
+              <Link to="contact" style={{ textDecoration: "none" }}>
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{
@@ -380,25 +380,45 @@ function Navbar() {
                 >
                   Contact
                 </Button>
-              </a>
+              </Link>
               {user?.uid && (
-                <Box onClick={handleBtn}>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      my: 2,
-                      color: "black",
-                      display: "block",
-                      fontFamily: "overpass,sherif-pro",
-                      "&:hover": {
-                        backgroundColor: "#6e3e37",
-                        transform: "scale(1.1)",
-                      },
-                    }}
-                  >
-                    Log Out
-                  </Button>
-                </Box>
+                <>
+                  <Link to="/dashboard" style={{ textDecoration: "none" }}>
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{
+                        my: 2,
+                        color: "black",
+                        display: "block",
+                        fontFamily: "overpass,sherif-pro",
+                        "&:hover": {
+                          backgroundColor: "#6e3e37",
+                          transform: "scale(1.1)",
+                        },
+                      }}
+                    >
+                      Dashboard
+                    </Button>
+                  </Link>
+
+                  <Box onClick={handleBtn}>
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{
+                        my: 2,
+                        color: "black",
+                        display: "block",
+                        fontFamily: "overpass,sherif-pro",
+                        "&:hover": {
+                          backgroundColor: "#6e3e37",
+                          transform: "scale(1.1)",
+                        },
+                      }}
+                    >
+                      Log Out
+                    </Button>
+                  </Box>
+                </>
               )}
             </Box>
 

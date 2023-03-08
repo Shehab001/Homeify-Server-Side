@@ -202,7 +202,7 @@ const Contact = () => {
 
             <Grid item xs={12} md={6}>
               <motion.div
-                initial={{ x: -350, opacity: 0 }}
+                initial={{ x: 350, opacity: 0 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
               >
@@ -224,7 +224,7 @@ const Contact = () => {
               <form ref={form} onSubmit={sendEmail}>
                 <Grid item xs={12} sx={{ my: 3 }}>
                   <motion.div
-                    initial={{ x: -350, opacity: 0 }}
+                    initial={{ x: 350, opacity: 0 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
                   >
@@ -239,7 +239,7 @@ const Contact = () => {
                 </Grid>{" "}
                 <Grid item xs={12} sx={{ my: 3 }}>
                   <motion.div
-                    initial={{ x: -350, opacity: 0 }}
+                    initial={{ x: 350, opacity: 0 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
                   >
@@ -254,7 +254,7 @@ const Contact = () => {
                 </Grid>{" "}
                 <Grid item xs={12}>
                   <motion.div
-                    initial={{ x: -350, opacity: 0 }}
+                    initial={{ x: 350, opacity: 0 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
                   >
@@ -270,7 +270,7 @@ const Contact = () => {
                 </Grid>{" "}
                 <Grid item xs={12}>
                   <motion.div
-                    initial={{ x: -350, opacity: 0 }}
+                    initial={{ x: 350, opacity: 0 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
                   >
