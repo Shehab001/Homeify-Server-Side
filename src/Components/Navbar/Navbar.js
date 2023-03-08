@@ -208,11 +208,11 @@ function Navbar() {
                     },
                   }}
                 >
-                  <a href="#aboutus" style={{ textDecoration: "none" }}>
+                  <Link to="aboutus" style={{ textDecoration: "none" }}>
                     <Typography textAlign="center" sx={{ color: "black" }}>
                       About Us
                     </Typography>
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem
                   onClick={handleCloseNavMenu}
@@ -222,11 +222,11 @@ function Navbar() {
                     },
                   }}
                 >
-                  <a href="#contact" style={{ textDecoration: "none" }}>
+                  <Link to="contact" style={{ textDecoration: "none" }}>
                     <Typography textAlign="center" sx={{ color: "black" }}>
                       Contact
                     </Typography>
-                  </a>
+                  </Link>
                 </MenuItem>
                 {user?.uid && (
                   <>
