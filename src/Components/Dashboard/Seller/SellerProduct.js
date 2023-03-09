@@ -14,12 +14,13 @@ import { AuthContext } from "../../../Context/Context";
 import DashboardButton from "../../Small/DashboardButton";
 import { motion } from "framer-motion";
 import Loader from "../../Small/Loader/Loader";
+import SellerAddProduct from "./SellerAddProduct";
 
 const SellerProduct = () => {
   const { user } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
   const [product, setProduct] = useState([]);
-  const [route, setRoute] = useState(false);
+
   const [id, setId] = useState(null);
   console.log(id);
 
@@ -48,82 +49,6 @@ const SellerProduct = () => {
   return (
     <>
       <Box mb={10} px={10}>
-        <Typography
-          sx={{
-            fontFamily: "jest",
-            letterSpacing: "1px",
-            fontSize: { md: "35px", xs: "20px" },
-            fontWeight: "bold",
-            color: "Black4",
-            textDecoration: "underline",
-            fontStyle: "italic",
-            my: 5,
-          }}
-        >
-          Welcome {user.displayName}
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: "jest",
-              letterSpacing: "1px",
-              fontSize: { md: "20px", xs: "16px" },
-              fontWeight: "bold",
-              color: "Black4",
-
-              textAlign: "start",
-            }}
-          >
-            All Product
-          </Typography>
-          <Box display={"flex"}>
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                fontFamily: "jest",
-                letterSpacing: "1px",
-                backgroundColor: "#222222",
-                "&:hover": {
-                  background: "#6e3e37",
-                },
-                fontSize: "10px",
-                mr: 1,
-              }}
-              onClick={() => {
-                setRoute(false);
-              }}
-            >
-              All Products
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                fontFamily: "jest",
-                letterSpacing: "1px",
-                backgroundColor: "#222222",
-                "&:hover": {
-                  background: "#6e3e37",
-                },
-                fontSize: "10px",
-              }}
-              onClick={() => {
-                setRoute(true);
-              }}
-            >
-              Add Product
-            </Button>
-          </Box>
-        </Box>
-
-        <Divider sx={{ color: "black", mt: 1 }}></Divider>
         {spin === true ? (
           <Box my={10}>
             <Loader></Loader>
