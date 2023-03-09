@@ -1,71 +1,160 @@
 import { Grid, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import Tilt from "react-tilt";
 
-const UserDashboard = () => {
+const UserDashboard = (props) => {
+  console.log(props.product);
   return (
     <>
-      <Tilt options={{ max: 15, speed: 100, scale: 1 }}>
-        <Grid
-          container
-          sx={{ boxShadow: "5", backgroundColor: "white", mb: 2 }}
+      {/* user */}
+      <Box py={0} sx={{ px: 2 }}>
+        <Typography
+          sx={{
+            fontFamily: "jest",
+            letterSpacing: "1px",
+            fontSize: { md: "20px", xs: "16px" },
+            color: "#f6f6f4",
+            mb: 2,
+          }}
         >
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>Name</Typography>
+          All Purchased Product
+        </Typography>
+        <Tilt options={{ max: 5, speed: 10, scale: 1 }}>
+          <Grid
+            container
+            sx={{ boxShadow: "5", backgroundColor: "white", mb: 2 }}
+          >
+            <Grid item xs={2.5} md={2.5} sx={{}}>
+              <Typography sx={{ py: 2, fontWeight: "bold" }}>Name</Typography>
+            </Grid>
+            <Grid item xs={2.5} md={2.5} sx={{}}>
+              <Typography sx={{ py: 2, fontWeight: "bold" }}>Price</Typography>
+            </Grid>
+            <Grid item xs={2.5} md={2.5} sx={{}}>
+              <Typography sx={{ py: 2, fontWeight: "bold" }}>Time</Typography>
+            </Grid>
+            <Grid item xs={2.5} md={2.5} sx={{}}>
+              <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                Location
+              </Typography>
+            </Grid>
+            <Grid item xs={2} md={2} sx={{}}>
+              <Typography sx={{ py: 2, fontWeight: "bold" }}>Status</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>Price</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>Date</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>Location</Typography>
-          </Grid>
-          <Grid item xs={2} md={2} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>Status</Typography>
-          </Grid>
-        </Grid>
-      </Tilt>
-      <Tilt options={{ max: 15, speed: 100, scale: 1 }}>
-        <Grid container sx={{ boxShadow: "5", backgroundColor: "white" }}>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>N/A</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>N/A</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>N/A</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>N/A</Typography>
-          </Grid>
-          <Grid item xs={2} md={2} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>N/A</Typography>
-          </Grid>
-        </Grid>
-      </Tilt>
-
-      <Tilt options={{ max: 15, speed: 100, scale: 1 }}>
-        <Grid container sx={{ boxShadow: "5", backgroundColor: "white" }}>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>{}</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>{}</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>{}</Typography>
-          </Grid>
-          <Grid item xs={2.5} md={2.5} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>{}</Typography>
-          </Grid>
-          <Grid item xs={2} md={2} sx={{}}>
-            <Typography sx={{ py: 2, fontWeight: "bold" }}>{}</Typography>
-          </Grid>
-        </Grid>
-      </Tilt>
+        </Tilt>
+        {props.product.length > 0 ? (
+          <>
+            {props.product.map((data) => (
+              <Tilt options={{ max: 5, speed: 10, scale: 1 }}>
+                <Grid
+                  container
+                  sx={{
+                    boxShadow: "5",
+                    backgroundColor: "white",
+                    mb: 2,
+                  }}
+                >
+                  <Grid item xs={2.5} md={2.5} sx={{}}>
+                    <Typography
+                      sx={{
+                        py: 2,
+                        fontWeight: "bold",
+                        fontSize: { xs: "10px", sm: "16px" },
+                      }}
+                    >
+                      {data.name}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2.5} md={2.5} sx={{}}>
+                    <Typography
+                      sx={{
+                        py: 2,
+                        fontWeight: "bold",
+                        fontSize: { xs: "10px", sm: "16px" },
+                      }}
+                    >
+                      {data.price}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2.5} md={2.5} sx={{}}>
+                    <Typography
+                      sx={{
+                        py: 2,
+                        fontWeight: "bold",
+                        fontSize: { xs: "10px", sm: "16px" },
+                      }}
+                    >
+                      {data.time}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2.5} md={2.5} sx={{}}>
+                    <Typography
+                      sx={{
+                        py: 2,
+                        fontWeight: "bold",
+                        fontSize: { xs: "10px", sm: "16px" },
+                      }}
+                    >
+                      {data.location}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2} md={2} sx={{}}>
+                    <Typography
+                      sx={{
+                        py: 2,
+                        fontWeight: "bold",
+                        fontSize: { xs: "10px", sm: "16px" },
+                      }}
+                    >
+                      Pending
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Tilt>
+            ))}
+          </>
+        ) : (
+          <>
+            <Tilt options={{ max: 15, speed: 100, scale: 1 }}>
+              <Grid
+                container
+                sx={{
+                  boxShadow: "5",
+                  backgroundColor: "white",
+                }}
+              >
+                <Grid item xs={2.5} md={2.5} sx={{}}>
+                  <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                    N/A
+                  </Typography>
+                </Grid>
+                <Grid item xs={2.5} md={2.5} sx={{}}>
+                  <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                    N/A
+                  </Typography>
+                </Grid>
+                <Grid item xs={2.5} md={2.5} sx={{}}>
+                  <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                    N/A
+                  </Typography>
+                </Grid>
+                <Grid item xs={2.5} md={2.5} sx={{}}>
+                  <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                    N/A
+                  </Typography>
+                </Grid>
+                <Grid item xs={2} md={2} sx={{}}>
+                  <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                    N/A
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Tilt>
+          </>
+        )}
+      </Box>
     </>
   );
 };

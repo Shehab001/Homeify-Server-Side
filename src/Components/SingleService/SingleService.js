@@ -73,6 +73,7 @@ const SingleService = () => {
         setSpin(false);
         if (dataa.acknowledged === true) {
           toast.success("Added To Cart");
+          form.reset();
         } else {
           toast.error("Try Again");
         }
