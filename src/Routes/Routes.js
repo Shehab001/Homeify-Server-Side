@@ -6,6 +6,7 @@ import Carousal from "../Components/Carousal/Carousal";
 import Contact from "../Components/Contact.js/Contact";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import Navbar from "../Components/Navbar/Navbar";
+import Cart from "../Components/Product/Cart";
 import Category from "../Components/Product/Category";
 import ProductNavbar from "../Components/Product/ProductNavbar";
 import SecondPage from "../Components/SecondPage/SecondPage";
@@ -63,10 +64,10 @@ const router = createBrowserRouter([
           </Private>
         ),
       },
-      // {
-      //   path: "/addservicee",
-      //   element: <SingleService></SingleService>,
-      // },
+      {
+        path: "/cart",
+        element: <Cart></Cart>,
+      },
       // {
       //   path: "/addservice",
       //   element: <AddService></AddService>,

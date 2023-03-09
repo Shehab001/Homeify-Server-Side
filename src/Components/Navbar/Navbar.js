@@ -424,7 +424,7 @@ function Navbar() {
 
             <Box sx={{ flexGrow: 0 }}>
               <Box>
-                <SearchOutlinedIcon
+                {/* <SearchOutlinedIcon
                   sx={{
                     fontSize: { xs: "25px", md: "30px" },
                     cursor: "pointer",
@@ -432,17 +432,20 @@ function Navbar() {
                       transform: "scale(1.7)",
                     },
                   }}
-                ></SearchOutlinedIcon>
-                <LocalMallOutlinedIcon
-                  sx={{
-                    fontSize: { xs: "25px", md: "30px" },
-                    mx: 2,
-                    cursor: "pointer",
-                    "&:hover": {
-                      transform: "scale(1.7)",
-                    },
-                  }}
-                ></LocalMallOutlinedIcon>
+                ></SearchOutlinedIcon> */}
+                <Link to="/cart">
+                  <LocalMallOutlinedIcon
+                    sx={{
+                      fontSize: { xs: "25px", md: "30px" },
+                      mx: 2,
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.7)",
+                      },
+                    }}
+                  ></LocalMallOutlinedIcon>
+                </Link>
+
                 {!user?.uid && (
                   <>
                     {["right"].map((anchor) => (

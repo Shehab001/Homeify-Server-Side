@@ -7,16 +7,22 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 import Tilt from "react-tilt";
 import { motion } from "framer-motion";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+import { AuthContext } from "../../Context/Context";
 
 const SingleService = () => {
   const data = useLoaderData();
-  console.log(data);
+  const { user } = useContext(AuthContext);
+  console.log(user);
+  const [spin, setSpin] = React.useState(false);
+  //console.log(data.price);
   const description = data.description.split(".");
   //console.log(description);
 
@@ -35,9 +41,47 @@ const SingleService = () => {
     },
   ];
 
-  const handleForm = () => {};
+  const handleForm = (event) => {
+    event.preventDefault();
+    setSpin(true);
+
+    const form = event.target;
+    const quantity = form.quantity.value;
+    const location = form.location.value;
+    let time = new Date().toString().slice(4, 21);
+    const uid = user.uid;
+    //console.log(quantity, location);
+
+    const userr = {
+      name: data.name,
+      price: data.price,
+      quantity: quantity,
+      location: location,
+      time: time,
+      uid: uid,
+    };
+
+    fetch("http://localhost:5000/addtocart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userr),
+    })
+      .then((res) => res.json())
+      .then((dataa) => {
+        setSpin(false);
+        if (dataa.acknowledged === true) {
+          toast.success("Added To Cart");
+        } else {
+          toast.error("Try Again");
+        }
+      });
+  };
+
   return (
     <Box sx={{ m: 10 }}>
+      <ToastContainer position="top-center" autoClose={1000} />
       <motion.div
         initial={{ x: -150, opacity: 0 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -123,6 +167,7 @@ const SingleService = () => {
                     label="Quantity"
                     type="number"
                     variant="outlined"
+                    name="quantity"
                     sx={{ mt: 2 }}
                     required
                   />
@@ -131,6 +176,7 @@ const SingleService = () => {
                     label="Exact Location"
                     type="text"
                     variant="outlined"
+                    name="location"
                     sx={{ mt: { xs: 2 }, ml: { lg: 2 } }}
                     required
                   />
