@@ -13,13 +13,17 @@ import Tilt from "react-tilt";
 import { AuthContext } from "../../../Context/Context";
 import DashboardButton from "../../Small/DashboardButton";
 import { motion } from "framer-motion";
+import Loader from "../../Small/Loader/Loader";
 
 const SellerProduct = () => {
   const { user } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
   const [product, setProduct] = useState([]);
   const [route, setRoute] = useState(false);
-  console.log(product);
+  const [id, setId] = useState(null);
+  console.log(id);
+
+  //console.log(product);
 
   useEffect(() => {
     setSpin(true);
@@ -30,6 +34,16 @@ const SellerProduct = () => {
         setSpin(false);
       });
   }, [user]);
+
+  const handleUpdate = () => {
+    setSpin(true);
+    fetch(`http://localhost:5000/sadvertise/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSpin(false);
+        console.log(data);
+      });
+  };
 
   return (
     <>
@@ -110,90 +124,125 @@ const SellerProduct = () => {
         </Box>
 
         <Divider sx={{ color: "black", mt: 1 }}></Divider>
-        <Grid container pt={2}>
-          {" "}
-          {product.map((data) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={3}
-              sx={{ backgroundColor: "#f6f6f4", p: 1 }}
-            >
+        {spin === true ? (
+          <Box my={10}>
+            <Loader></Loader>
+          </Box>
+        ) : (
+          <>
+            <Grid container pt={2}>
               {" "}
-              <motion.div
-                initial={{ x: -150, opacity: 0 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1 }}
-              >
-                <Card
-                  sx={{
-                    backgroundColor: "#e6e6e4",
-                    p: 1,
-                    "&:hover": {
-                      transform: "scale(1.1)",
-                      transition: "1s",
-                    },
-                  }}
+              {product.map((data) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={3}
+                  sx={{ backgroundColor: "#f6f6f4", p: 1 }}
                 >
-                  <CardMedia
-                    component="img"
-                    alt="green iguana"
-                    height="140"
-                    image={data.img1}
-                  />
-                  <Typography
-                    sx={{
-                      fontFamily: "jest",
-                      letterSpacing: "3px",
-                      textAlign: "start",
-                      pl: 2,
-                    }}
+                  {" "}
+                  <motion.div
+                    initial={{ x: -150, opacity: 0 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1 }}
                   >
-                    {data.name}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: "jest",
-                      letterSpacing: "3px",
-                      textAlign: "start",
-                      pl: 2,
-                    }}
-                  >
-                    {data.pid}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: "jest",
-                      letterSpacing: "3px",
-                      textAlign: "start",
-                      pl: 2,
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    Left : {data.quantity}
-                    <Button
+                    <Card
                       sx={{
-                        fontFamily: "jest",
-                        letterSpacing: "1px",
-                        backgroundColor: "#222222",
+                        backgroundColor: "#e6e6e4",
+                        p: 1,
                         "&:hover": {
-                          background: "#6e3e37",
+                          transform: "scale(1.1)",
+                          transition: "1s",
                         },
-                        fontSize: "10px",
                       }}
-                      variant="contained"
-                      size="small"
                     >
-                      Advertise
-                    </Button>
-                  </Typography>
-                </Card>
-              </motion.div>
+                      <CardMedia
+                        component="img"
+                        alt="green iguana"
+                        height="140"
+                        image={data.img1}
+                      />
+                      <Typography
+                        sx={{
+                          fontFamily: "jest",
+                          letterSpacing: "3px",
+                          textAlign: "start",
+                          pl: 2,
+                        }}
+                      >
+                        {data.name}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontFamily: "jest",
+                          letterSpacing: "3px",
+                          textAlign: "start",
+                          pl: 2,
+                        }}
+                      >
+                        {data.pid}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontFamily: "jest",
+                          letterSpacing: "3px",
+                          textAlign: "start",
+                          pl: 2,
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        Left : {data.quantity}
+                        {data.advertised === "Yes" ? (
+                          <>
+                            {" "}
+                            <Button
+                              sx={{
+                                fontFamily: "jest",
+                                letterSpacing: "1px",
+                                backgroundColor: "#222222",
+                                "&:hover": {
+                                  background: "#6e3e37",
+                                },
+                                fontSize: "10px",
+                              }}
+                              variant="contained"
+                              size="small"
+                              disabled
+                            >
+                              Advertised
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <Button
+                              sx={{
+                                fontFamily: "jest",
+                                letterSpacing: "1px",
+                                backgroundColor: "#222222",
+                                "&:hover": {
+                                  background: "#6e3e37",
+                                },
+                                fontSize: "10px",
+                              }}
+                              variant="contained"
+                              size="small"
+                              onMouseOver={() => setId(data._id)}
+                              onClick={handleUpdate}
+                            >
+                              Advertise
+                            </Button>
+                          </>
+                        )}
+                      </Typography>
+                    </Card>
+                  </motion.div>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
+          </>
+        )}
       </Box>
     </>
   );
