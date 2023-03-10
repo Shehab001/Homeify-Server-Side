@@ -7,17 +7,20 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Loader from "../Small/Loader/Loader";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/Context";
 
 const Product = () => {
   const [data, setData] = useState([]);
   const [spin, setSpin] = useState(false);
-  // console.log(data);
+  const { list, query, rating, price } = useContext(AuthContext);
+
+  console.log(data);
 
   useEffect(() => {
     setSpin(true);
@@ -40,54 +43,134 @@ const Product = () => {
           <>
             {" "}
             <Grid container spacing={5} width={"100%"} mx={"auto"}>
-              {data.map((product, index) => (
-                <>
-                  {index < 20 && (
-                    <>
-                      {" "}
-                      <Grid md={3} sm={6} xs={12} p={2} onClick={() => {}}>
-                        <motion.div
-                          initial={{ x: -150, opacity: 0 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 1 }}
-                        >
-                          {" "}
-                          <Link
-                            to={`/singleservice/${product._id}`}
-                            style={{ textDecoration: "none" }}
+              {data
+                .filter((item) => {
+                  console.log(list, query, rating, price);
+                  if (
+                    list === "" &&
+                    query === "" &&
+                    price === 0 &&
+                    rating === null
+                  ) {
+                    console.log("all");
+                    return item;
+                  } else if (
+                    item.category.toLowerCase() === query.toLowerCase() &&
+                    rating === null &&
+                    price === 0 &&
+                    list === ""
+                  ) {
+                    console.log("category only");
+                    return item;
+                  } else if (
+                    item.rating == rating &&
+                    query === "" &&
+                    price === 0 &&
+                    list === ""
+                  ) {
+                    console.log("only rating");
+                    return item;
+                  } else if (
+                    query === "" &&
+                    rating == item.rating &&
+                    price === null &&
+                    list === ""
+                  ) {
+                    console.log("only rating");
+                    return item;
+                  } else if (
+                    item.name.toLowerCase().includes(list.toLowerCase()) &&
+                    query === "" &&
+                    rating === null &&
+                    price === 0
+                  ) {
+                    console.log(
+                      item.name.toLowerCase().includes(list.toLowerCase())
+                    );
+                    return item;
+                  } else if (
+                    item.rating == rating &&
+                    item.category.toLowerCase() === query.toLowerCase() &&
+                    price === 0 &&
+                    list === ""
+                  ) {
+                    console.log("rating & category");
+                    return item;
+                  } else if (
+                    rating === null &&
+                    item.category.toLowerCase() === query.toLowerCase() &&
+                    price === 0 &&
+                    item.name.toLowerCase().includes(list.toLowerCase())
+                  ) {
+                    console.log("search & category");
+                    return item;
+                  } else if (
+                    item.rating == rating &&
+                    query === "" &&
+                    price === 0 &&
+                    item.name.toLowerCase().includes(list.toLowerCase())
+                  ) {
+                    console.log("search & rating");
+                    return item;
+                  } else if (
+                    item.rating == rating &&
+                    item.category.toLowerCase() === query.toLowerCase() &&
+                    price === 0 &&
+                    item.name.toLowerCase().includes(list.toLowerCase())
+                  ) {
+                    console.log("search & category & rating");
+                    return item;
+                  }
+                })
+                .map((item, index) => (
+                  <>
+                    {index < 20 && (
+                      <>
+                        {" "}
+                        <Grid md={3} sm={6} xs={12} p={2} onClick={() => {}}>
+                          <motion.div
+                            initial={{ x: -150, opacity: 0 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1 }}
                           >
-                            <Card
-                              sx={{
-                                backgroundColor: "#e6e6e4",
-                                cursor: "pointer",
-                                "&:hover": {
-                                  transform: "scale(1.1)",
-                                  transition: "1s",
-                                },
-                              }}
+                            {" "}
+                            <Link
+                              to={`/singleservice/${item._id}`}
+                              style={{ textDecoration: "none" }}
                             >
-                              <CardMedia
-                                component="img"
-                                alt="green iguana"
-                                height="140"
-                                image={product.img1}
-                              />
-                              <Typography
+                              <Card
                                 sx={{
-                                  fontFamily: "jest",
-                                  letterSpacing: "3px",
+                                  backgroundColor: "#e6e6e4",
+                                  cursor: "pointer",
+                                  "&:hover": {
+                                    transform: "scale(1.1)",
+                                    transition: "1s",
+                                  },
                                 }}
                               >
-                                {product.name}
-                              </Typography>
-                            </Card>
-                          </Link>
-                        </motion.div>
-                      </Grid>
-                    </>
-                  )}
-                </>
-              ))}
+                                <CardMedia
+                                  component="img"
+                                  alt="green iguana"
+                                  height="140"
+                                  image={item.img1}
+                                />
+                                <Typography
+                                  sx={{
+                                    fontFamily: "jest",
+                                    letterSpacing: "3px",
+                                  }}
+                                >
+                                  {item.name}
+                                </Typography>
+                              </Card>
+                            </Link>
+                          </motion.div>
+                        </Grid>
+                      </>
+                    )}
+                  </>
+                ))}
+              {}
             </Grid>
             <motion.div
               initial={{ x: -150, opacity: 0 }}
@@ -109,3 +192,9 @@ const Product = () => {
 };
 
 export default Product;
+// else if (
+//                     item.name.toLowerCase().includes(list.toLowerCase())
+//                   ) {
+//                     console.log(item.name.toLowerCase(), list.toLowerCase());
+//                     return item;
+//                   }

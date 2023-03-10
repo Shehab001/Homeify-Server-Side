@@ -15,18 +15,10 @@ const Dashboard = () => {
   const [cart, setCart] = useState([]);
   console.log(cart);
 
-  useEffect(() => {
-    setSpin(true);
-    fetch(`http://localhost:5000/fetchcart/${user?.uid}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCart(data);
-        setSpin(false);
-      });
-  }, [user]);
   return (
     <>
       <SellerDashboard></SellerDashboard>
+      {/* <UserDashboard></UserDashboard> */}
       {/* <Box sx={{ backgroundColor: "rgb(36 38 43)", pb: 20 }}>
         <Box
           sx={{

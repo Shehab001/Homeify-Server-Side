@@ -1,15 +1,19 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import SearchField from "react-search-field";
+import { AuthContext } from "../../Context/Context";
 
 const SearchBar = () => {
-  const onChange = () => {};
+  const { setList, search } = useContext(AuthContext);
+
   return (
-    <Box>
+    <Box sx={{ ml: { sm: -5 } }}>
       <SearchField
         height={50}
-        placeholder="Search..."
-        onChange={onChange}
+        placeholder={search}
+        onChange={(event) => {
+          setList(event);
+        }}
         classNames="test-class"
       />
     </Box>

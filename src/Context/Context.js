@@ -15,7 +15,14 @@ const auth = getAuth(app);
 
 const Context = ({ children }) => {
   const [user, setUser] = useState({});
+  const [query, setQuery] = useState("");
+  const [list, setList] = useState("");
+  const [rating, setRating] = useState(null);
+  const [price, setPrice] = useState(0);
+  const [search, setSearch] = useState("Product Name");
+
   const [authControl, setAuthControl] = useState("signin");
+  console.log(list, rating, search, query, price);
 
   const [state, setState] = React.useState({
     right: false,
@@ -77,6 +84,16 @@ const Context = ({ children }) => {
     toggleDrawer,
     authControl,
     setAuthControl,
+    query,
+    setQuery,
+    list,
+    setList,
+    rating,
+    setRating,
+    price,
+    setPrice,
+    search,
+    setSearch,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

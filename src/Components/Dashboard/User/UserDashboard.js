@@ -1,14 +1,30 @@
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Tilt from "react-tilt";
+import { AuthContext } from "../../../Context/Context";
 
 const UserDashboard = (props) => {
-  console.log(props.product);
+  const { user } = useContext(AuthContext);
+  const [spin, setSpin] = useState(false);
+  const [cart, setCart] = useState([]);
+  console.log(user.uid);
+
+  useEffect(() => {
+    setSpin(true);
+    fetch(`http://localhost:5000/fetchcart/${user?.uid}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCart(data);
+        setSpin(false);
+      });
+  }, [user]);
+  console.log(cart);
+  //temporaray showing dATA FORM cart ,daata will be shown from payment database
   return (
     <>
       {/* user */}
-      <Box py={0} sx={{ px: 2 }}>
+      <Box pb={20} sx={{ px: 2 }}>
         <Typography
           sx={{
             fontFamily: "jest",
@@ -44,9 +60,9 @@ const UserDashboard = (props) => {
             </Grid>
           </Grid>
         </Tilt>
-        {props.product.length > 0 ? (
+        {cart.length > 0 ? (
           <>
-            {props.product.map((data) => (
+            {cart.map((data) => (
               <Tilt options={{ max: 5, speed: 10, scale: 1 }}>
                 <Grid
                   container

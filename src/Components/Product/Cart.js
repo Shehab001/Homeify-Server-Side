@@ -50,7 +50,7 @@ const Cart = () => {
   };
 
   return (
-    <>
+    <Box>
       <ToastContainer position="top-center" autoClose={500} />
       {spin === true ? (
         <Box my={20}>
@@ -293,7 +293,7 @@ const Cart = () => {
           )}
         </>
       )}
-    </>
+    </Box>
   );
 };
 

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import { Range, getTrackBackground } from "react-range";
+import { AuthContext } from "../../Context/Context";
 
 const STEP = 1000;
 const MIN = 0;

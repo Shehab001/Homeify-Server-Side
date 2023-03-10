@@ -11,7 +11,7 @@ const SellerDashboard = () => {
   const { user } = useContext(AuthContext);
   const [route, setRoute] = useState(false);
   return (
-    <>
+    <Box>
       <Box mx={10}>
         <Typography
           sx={{
@@ -95,7 +95,7 @@ const SellerDashboard = () => {
       ) : (
         <SellerAddProduct></SellerAddProduct>
       )}
-    </>
+    </Box>
   );
 };
 

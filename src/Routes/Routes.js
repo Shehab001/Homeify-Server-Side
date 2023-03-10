@@ -5,6 +5,7 @@ import OurTeam from "../Components/AboutUs/OurTeam";
 import Carousal from "../Components/Carousal/Carousal";
 import Contact from "../Components/Contact.js/Contact";
 import Dashboard from "../Components/Dashboard/Dashboard";
+import UserDashboard from "../Components/Dashboard/User/UserDashboard";
 import Navbar from "../Components/Navbar/Navbar";
 import Cart from "../Components/Product/Cart";
 import Category from "../Components/Product/Category";
@@ -68,10 +69,10 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart></Cart>,
       },
-      // {
-      //   path: "/addservice",
-      //   element: <AddService></AddService>,
-      // },
+      {
+        path: "/addservice",
+        element: <UserDashboard></UserDashboard>,
+      },
       {
         path: "/singleservice/:id",
         element: <SingleService></SingleService>,

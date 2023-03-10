@@ -20,6 +20,7 @@ const SellerProduct = () => {
   const { user } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
   const [product, setProduct] = useState([]);
+  const [fresh, setFresh] = useState(true);
 
   const [id, setId] = useState(null);
   console.log(id);
@@ -34,7 +35,7 @@ const SellerProduct = () => {
         setProduct(data);
         setSpin(false);
       });
-  }, [user]);
+  }, [user, fresh]);
 
   const handleUpdate = () => {
     setSpin(true);
@@ -42,6 +43,7 @@ const SellerProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         setSpin(false);
+        setFresh(!fresh);
         console.log(data);
       });
   };
