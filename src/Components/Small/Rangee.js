@@ -87,7 +87,7 @@ const Rangee = () => {
           </div>
         )}
       />
-      <output style={{ marginLeft: "90px" }} id="output">
+      <output style={{ marginLeft: "50%" }} id="output">
         {price}
       </output>
     </div>
