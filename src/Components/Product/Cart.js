@@ -27,7 +27,7 @@ const Cart = () => {
 
   useEffect(() => {
     setSpin(true);
-    fetch(`http://localhost:5000/fetchcart/${user?.uid}`)
+    fetch(`https://homeify-server.vercel.app/fetchcart/${user?.uid}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data);
@@ -36,7 +36,7 @@ const Cart = () => {
   }, [user, fresh]);
 
   const handleDelete = () => {
-    fetch(`http://localhost:5000/deletecartproduct/${id}`)
+    fetch(`https://homeify-server.vercel.app/deletecartproduct/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

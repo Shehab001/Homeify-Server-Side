@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         path: "/singleservice/:id",
         element: <SingleService></SingleService>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singleservice/${params.id}`),
+          fetch(`https://homeify-server.vercel.app/singleservice/${params.id}`),
       },
       // {
       //   path: "*",

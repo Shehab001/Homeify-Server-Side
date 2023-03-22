@@ -29,7 +29,7 @@ const SellerProduct = () => {
 
   useEffect(() => {
     setSpin(true);
-    fetch(`http://localhost:5000/sellerproduct/${user?.email}`)
+    fetch(`https://homeify-server.vercel.app/sellerproduct/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -39,7 +39,7 @@ const SellerProduct = () => {
 
   const handleUpdate = () => {
     setSpin(true);
-    fetch(`http://localhost:5000/sadvertise/${id}`)
+    fetch(`https://homeify-server.vercel.app/sadvertise/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSpin(false);

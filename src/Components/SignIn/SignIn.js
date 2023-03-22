@@ -31,7 +31,7 @@ const SignIn = () => {
 
   const jwt = (user) => {
     //jwt
-    fetch("http://localhost:5000/jwt", {
+    fetch("https://homeify-server.vercel.app/jwt", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -70,7 +70,7 @@ const SignIn = () => {
       uid: uid,
     };
     console.log(userr);
-    fetch("http://localhost:5000/saveuser", {
+    fetch("https://homeify-server.vercel.app/saveuser", {
       method: "POST",
       headers: {
         "content-type": "application/json",

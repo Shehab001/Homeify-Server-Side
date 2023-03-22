@@ -128,17 +128,17 @@ function Item(props) {
               }}
             >
               <motion.div
-                initial={{ y: 500, opacity: 0 }}
+                initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 2.5 }}
+                transition={{ duration: 2.5 }}
               >
                 <img className="center" src={img1} alt="Furniture"></img>
               </motion.div>
             </Box>
-            <motion.div
+            {/* <motion.div
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.5, duration: 2.5 }}
+              transition={{ delay: 1.5, duration: 1.5 }}
             >
               <Box
                 sx={{
@@ -152,7 +152,7 @@ function Item(props) {
                   alt="Furniture"
                 ></img>
               </Box>
-            </motion.div>
+            </motion.div> */}
           </Box>
         </>
       ) : (
@@ -237,18 +237,6 @@ function Item(props) {
               }}
             >
               <img className="center3" src={img3} alt="Furniture"></img>
-            </Box>
-            <Box
-              sx={{
-                zIndex: 1050,
-              }}
-            >
-              <img
-                className="center1"
-                style={{ position: "absolute", right: 0, zIndex: 1050 }}
-                src={img2}
-                alt="Furniture"
-              ></img>
             </Box>
           </Box>
         </>

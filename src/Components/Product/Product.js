@@ -24,7 +24,7 @@ const Product = () => {
 
   useEffect(() => {
     setSpin(true);
-    fetch("http://localhost:5000/allproduct")
+    fetch("https://homeify-server.vercel.app/allproduct")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
