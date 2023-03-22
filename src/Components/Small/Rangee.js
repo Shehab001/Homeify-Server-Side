@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import { Range, getTrackBackground } from "react-range";
+import { AuthContext } from "../../Context/Context";
 
 const STEP = 1000;
 const MIN = 0;
@@ -8,6 +9,8 @@ const MAX = 100000;
 
 const Rangee = () => {
   const [state, setState] = useState([0]);
+  const { price, setPrice } = useContext(AuthContext);
+  console.log(price);
   // state = {
   //   values: [0],
   // };
@@ -16,17 +19,17 @@ const Rangee = () => {
     <div
       style={{
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "start",
         flexWrap: "wrap",
-        margin: "2em",
+        marginLeft: "15px",
       }}
     >
       <Range
-        values={state}
+        values={price}
         step={STEP}
         min={MIN}
         max={MAX}
-        onChange={(values) => setState(values)}
+        onChange={(values) => setPrice(values)}
         renderTrack={({ props, children }) => (
           <div
             onMouseDown={props.onMouseDown}
@@ -47,7 +50,7 @@ const Rangee = () => {
                 width: "70%",
                 borderRadius: "4px",
                 background: getTrackBackground({
-                  values: state,
+                  values: price,
                   colors: ["#548BF4", "#ccc"],
                   min: MIN,
                   max: MAX,
@@ -85,7 +88,7 @@ const Rangee = () => {
         )}
       />
       <output style={{ marginLeft: "90px" }} id="output">
-        {state[0]}
+        {price}
       </output>
     </div>
   );

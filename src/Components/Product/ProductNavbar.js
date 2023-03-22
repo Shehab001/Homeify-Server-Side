@@ -18,7 +18,7 @@ const ProductNavbar = () => {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
       >
-        <Box sx={{ mb: 10, mx: { md: 10, sm: 2 }, mt: 2 }}>
+        <Box sx={{ mb: 2, mx: { md: 10, xs: 2 }, mt: 2 }}>
           <Typography
             sx={{
               fontFamily: "jest",
@@ -32,18 +32,18 @@ const ProductNavbar = () => {
           >
             Search Parameters
           </Typography>
-          <Divider sx={{ mb: -5 }}></Divider>
+          <Divider sx={{ mb: 0 }}></Divider>
           <Grid container spacing={2} alignItems={"center"}>
-            <Grid item sm={4} xs={12} pt={5}>
+            <Grid item sm={4} xs={4} pt={5} ml={{ xs: "-25px", sm: 0 }}>
               <Rangee></Rangee>
             </Grid>
-            <Grid item sm={4} xs={12}>
+            <Grid item sm={4} xs={4}>
               <SearchBar></SearchBar>
             </Grid>
             <Grid
               item
               sm={4}
-              xs={12}
+              xs={4}
               display={"flex"}
               justifyContent={"space-around"}
               alignItems={"center"}
@@ -51,7 +51,7 @@ const ProductNavbar = () => {
               <Rating
                 name="simple-controlled"
                 value={rating}
-                sx={{ fontSize: { md: 30, xs: 30, sm: 20 } }}
+                sx={{ fontSize: { md: 30, xs: 20, sm: 20 } }}
                 onChange={(event, newValue) => {
                   setRating(newValue);
                 }}
@@ -59,7 +59,9 @@ const ProductNavbar = () => {
               <Typography>
                 <CancelIcon
                   sx={{
-                    fontSize: { md: 35, xs: 35, sm: 25 },
+                    fontSize: { md: 35, xs: 25, sm: 25 },
+                    mt: { xs: 1, sm: 0 },
+                    mr: { xs: -5, sm: 0 },
                     cursor: "pointer",
                     "&:hover": { transform: "scale(1.3)" },
                   }}
@@ -67,14 +69,14 @@ const ProductNavbar = () => {
                     setQuery("");
                     setList("");
                     setRating(null);
-                    setPrice(0);
+                    setPrice([0]);
                     setSearch("Product Name");
                   }}
                 ></CancelIcon>
               </Typography>
             </Grid>
           </Grid>
-          <Divider sx={{ mt: { xs: 0, sm: -4 } }}></Divider>
+          <Divider sx={{ mb: { xs: 5, sm: 8 } }}></Divider>
         </Box>
       </motion.div>
 

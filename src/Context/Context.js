@@ -18,7 +18,7 @@ const Context = ({ children }) => {
   const [query, setQuery] = useState("");
   const [list, setList] = useState("");
   const [rating, setRating] = useState(null);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState([0]);
   const [search, setSearch] = useState("Product Name");
 
   const [authControl, setAuthControl] = useState("signin");

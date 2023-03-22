@@ -45,11 +45,11 @@ const Product = () => {
             <Grid container spacing={5} width={"100%"} mx={"auto"}>
               {data
                 .filter((item) => {
-                  console.log(list, query, rating, price);
+                  // console.log(list, query, rating, price[0], item);
                   if (
                     list === "" &&
                     query === "" &&
-                    price === 0 &&
+                    price[0] === 0 &&
                     rating === null
                   ) {
                     console.log("all");
@@ -57,7 +57,7 @@ const Product = () => {
                   } else if (
                     item.category.toLowerCase() === query.toLowerCase() &&
                     rating === null &&
-                    price === 0 &&
+                    price[0] === 0 &&
                     list === ""
                   ) {
                     console.log("category only");
@@ -65,7 +65,7 @@ const Product = () => {
                   } else if (
                     item.rating == rating &&
                     query === "" &&
-                    price === 0 &&
+                    price[0] === 0 &&
                     list === ""
                   ) {
                     console.log("only rating");
@@ -73,7 +73,7 @@ const Product = () => {
                   } else if (
                     query === "" &&
                     rating == item.rating &&
-                    price === null &&
+                    price[0] === null &&
                     list === ""
                   ) {
                     console.log("only rating");
@@ -82,7 +82,7 @@ const Product = () => {
                     item.name.toLowerCase().includes(list.toLowerCase()) &&
                     query === "" &&
                     rating === null &&
-                    price === 0
+                    price[0] === 0
                   ) {
                     console.log(
                       item.name.toLowerCase().includes(list.toLowerCase())
@@ -91,7 +91,7 @@ const Product = () => {
                   } else if (
                     item.rating == rating &&
                     item.category.toLowerCase() === query.toLowerCase() &&
-                    price === 0 &&
+                    price[0] === 0 &&
                     list === ""
                   ) {
                     console.log("rating & category");
@@ -99,7 +99,7 @@ const Product = () => {
                   } else if (
                     rating === null &&
                     item.category.toLowerCase() === query.toLowerCase() &&
-                    price === 0 &&
+                    price[0] === 0 &&
                     item.name.toLowerCase().includes(list.toLowerCase())
                   ) {
                     console.log("search & category");
@@ -107,7 +107,7 @@ const Product = () => {
                   } else if (
                     item.rating == rating &&
                     query === "" &&
-                    price === 0 &&
+                    price[0] === 0 &&
                     item.name.toLowerCase().includes(list.toLowerCase())
                   ) {
                     console.log("search & rating");
@@ -115,10 +115,66 @@ const Product = () => {
                   } else if (
                     item.rating == rating &&
                     item.category.toLowerCase() === query.toLowerCase() &&
-                    price === 0 &&
+                    price[0] === 0 &&
                     item.name.toLowerCase().includes(list.toLowerCase())
                   ) {
                     console.log("search & category & rating");
+                    return item;
+                  } else if (
+                    list === "" &&
+                    query === "" &&
+                    price[0] >= item.price &&
+                    rating === null
+                  ) {
+                    console.log("all");
+                    return item;
+                  } else if (
+                    item.name.toLowerCase().includes(list.toLowerCase()) &&
+                    query === "" &&
+                    price[0] >= item.price &&
+                    rating === null
+                  ) {
+                    console.log("all");
+                    return item;
+                  } else if (
+                    list === "" &&
+                    item.category.toLowerCase() === query.toLowerCase() &&
+                    price[0] >= item.price &&
+                    rating === null
+                  ) {
+                    console.log("all");
+                    return item;
+                  } else if (
+                    list === "" &&
+                    query === "" &&
+                    price[0] >= item.price &&
+                    item.rating == rating
+                  ) {
+                    console.log("all");
+                    return item;
+                  } else if (
+                    list === "" &&
+                    item.category.toLowerCase() === query.toLowerCase() &&
+                    price[0] >= item.price &&
+                    item.rating == rating
+                  ) {
+                    console.log("all");
+                    return item;
+                  } else if (
+                    item.name.toLowerCase().includes(list.toLowerCase()) &&
+                    query === "" &&
+                    price[0] >= item.price &&
+                    item.rating == rating
+                  ) {
+                    console.log("all");
+                    return item;
+                  } else if (
+                    item.name.toLowerCase().includes(list.toLowerCase()) &&
+                    item.category.toLowerCase() === query.toLowerCase() &&
+                    price[0] >= item.price &&
+                    item.rating == rating
+                  ) {
+                    console.log("all");
                     return item;
                   }
                 })
@@ -127,9 +183,9 @@ const Product = () => {
                     {index < 20 && (
                       <>
                         {" "}
-                        <Grid md={3} sm={6} xs={12} p={2} onClick={() => {}}>
+                        <Grid md={3} sm={3} xs={4} p={2} onClick={() => {}}>
                           <motion.div
-                            initial={{ x: -150, opacity: 0 }}
+                            initial={{ x: -50, opacity: 0 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 1 }}
                           >
