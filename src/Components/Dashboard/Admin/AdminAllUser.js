@@ -70,8 +70,7 @@ const AdminAllUser = (props) => {
               (data) =>
                 data.role === "user" && (
                   <>
-                    {console.log(data.role)}
-                    <Tilt options={{ max: 15, speed: 50, scale: 1 }}>
+                    <Tilt options={{ max: 5, speed: 50, scale: 1 }}>
                       <Grid
                         container
                         sx={{ boxShadow: "5", backgroundColor: "white", mb: 1 }}

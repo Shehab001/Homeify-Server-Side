@@ -100,7 +100,7 @@ const AdminDashboard = () => {
                 setRoute(1);
               }}
             >
-              Add Seller
+              All Seller
             </Button>
             <Button
               variant="contained"

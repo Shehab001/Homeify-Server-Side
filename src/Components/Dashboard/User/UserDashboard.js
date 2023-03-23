@@ -8,18 +8,18 @@ const UserDashboard = (props) => {
   const { user } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
   const [cart, setCart] = useState([]);
-  console.log(user.uid);
+  // console.log(user.uid);
 
   useEffect(() => {
     setSpin(true);
     fetch(`http://localhost:5000/fetchcart/${user?.uid}`)
       .then((res) => res.json())
       .then((data) => {
-        setCart(data);
+        // setCart(data);
         setSpin(false);
       });
   }, [user]);
-  console.log(cart);
+  // console.log(cart);
   //temporaray showing dATA FORM cart ,daata will be shown from payment database
   return (
     <>
@@ -29,9 +29,12 @@ const UserDashboard = (props) => {
           sx={{
             fontFamily: "jest",
             letterSpacing: "1px",
-            fontSize: { md: "20px", xs: "16px" },
-            color: "#f6f6f4",
-            mb: 2,
+            fontSize: { md: "35px", xs: "20px" },
+            fontWeight: "bold",
+            color: "Black4",
+            textDecoration: "underline",
+            fontStyle: "italic",
+            my: 5,
           }}
         >
           All Purchased Product

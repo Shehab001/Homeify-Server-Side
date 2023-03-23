@@ -12,8 +12,9 @@ const AdminAllSeller = (props) => {
   const [id, setId] = useState([]);
   const { user, freshh, setFreshh } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
-  console.log(id);
-  console.log(id);
+  let x = 0;
+
+  console.log(x);
   const handleDelete = () => {
     setSpin(true);
     fetch(`http://localhost:5000/deleteuser/${id}`)
@@ -38,8 +39,8 @@ const AdminAllSeller = (props) => {
           </Box>
         ) : (
           <>
-            <Box mx={{ sm: 10, xs: 5 }}>
-              <Tilt options={{ max: 15, speed: 50, scale: 1 }}>
+            <Box mx={{ sm: 10, xs: 5 }} mb={1}>
+              <Tilt options={{ max: 5, speed: 50, scale: 1 }}>
                 <Grid
                   container
                   sx={{ boxShadow: "5", backgroundColor: "white" }}
@@ -70,7 +71,9 @@ const AdminAllSeller = (props) => {
             <Box mx={{ sm: 10, xs: 5 }}>
               {props.data.map(
                 (data) =>
-                  data.role === "seller" && (
+                  data.role === "seller" &&
+                  ((x += 1),
+                  (
                     <>
                       {console.log(data.role)}
                       <Tilt options={{ max: 15, speed: 50, scale: 1 }}>
@@ -120,9 +123,43 @@ const AdminAllSeller = (props) => {
                         </Grid>
                       </Tilt>
                     </>
-                  )
+                  ))
               )}
             </Box>
+            {x == 0 && (
+              <Box mx={{ sm: 10, xs: 5 }}>
+                <Tilt options={{ max: 5, speed: 50, scale: 1 }}>
+                  <Grid
+                    container
+                    sx={{
+                      boxShadow: "5",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <Grid item xs={3} sx={{}}>
+                      <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                        N/A
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={3} sx={{}}>
+                      <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                        N/A
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={3} sx={{}}>
+                      <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                        N/A
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={2} md={2} sx={{}}>
+                      <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                        N/A
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Tilt>
+              </Box>
+            )}
           </>
         )}
       </Box>
