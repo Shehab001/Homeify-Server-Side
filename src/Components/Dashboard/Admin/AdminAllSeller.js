@@ -102,7 +102,7 @@ const AdminAllSeller = (props) => {
                             </Typography>
                           </Grid>
                           <Grid item xs={3} sx={{}}>
-                            <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                            <Typography sx={{ pt: 1, fontWeight: "bold" }}>
                               <RemoveCircleOutlineIcon
                                 sx={{
                                   fontSize: {
