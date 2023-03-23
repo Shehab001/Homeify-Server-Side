@@ -20,10 +20,9 @@ const Context = ({ children }) => {
   const [rating, setRating] = useState(null);
   const [price, setPrice] = useState([0]);
   const [search, setSearch] = useState("Product Name");
-
   const [authControl, setAuthControl] = useState("signin");
   //console.log(list, rating, search, query, price);
-
+  const [freshh, setFreshh] = useState(false);
   const [state, setState] = React.useState({
     right: false,
   });
@@ -94,6 +93,8 @@ const Context = ({ children }) => {
     setPrice,
     search,
     setSearch,
+    freshh,
+    setFreshh,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -84,7 +84,7 @@ const SellerAddProduct = () => {
     };
     console.log(value);
 
-    fetch("https://homeify-server.vercel.app/addproduct", {
+    fetch("http://localhost:5000/addproduct", {
       method: "POST",
       headers: {
         "content-type": "application/json",

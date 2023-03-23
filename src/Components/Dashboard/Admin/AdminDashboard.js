@@ -1,10 +1,28 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context/Context";
+import Loader from "../../Small/Loader/Loader";
+import AdminAllSeller from "./AdminAllSeller";
+import AdminAllUser from "./AdminAllUser";
+import ReportedItems from "./ReportedItems";
 
 const AdminDashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, freshh } = useContext(AuthContext);
   const [route, setRoute] = useState(0);
+  const [spin, setSpin] = useState(false);
+  const [data, setData] = useState([]);
+  console.log(data);
+
+  useEffect(() => {
+    setSpin(true);
+    fetch(`http://localhost:5000/fetchuser`)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setSpin(false);
+      });
+  }, [freshh]);
+
   return (
     <Box>
       <Box mx={10}>
@@ -35,12 +53,11 @@ const AdminDashboard = () => {
               letterSpacing: "1px",
               fontSize: { md: "20px", xs: "16px" },
               fontWeight: "bold",
-              color: "Black4",
+              color: "Black",
 
               textAlign: "start",
             }}
           >
-            {/* {route === 0 ? "All Seller" : "All Product"} */}
             {route === 1
               ? "All Seller"
               : route === 2
@@ -107,8 +124,23 @@ const AdminDashboard = () => {
           </Box>
         </Box>
 
-        <Divider sx={{ color: "black", mt: 1, mb: 5 }}></Divider>
+        <Divider sx={{ color: "black", mt: 1, mb: 2 }}></Divider>
       </Box>
+      {spin === true ? (
+        <Box my={20}>
+          <Loader></Loader>
+        </Box>
+      ) : (
+        <Box>
+          {route === 1 ? (
+            <AdminAllSeller></AdminAllSeller>
+          ) : route === 2 ? (
+            <ReportedItems></ReportedItems>
+          ) : (
+            <AdminAllUser></AdminAllUser>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };

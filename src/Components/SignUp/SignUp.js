@@ -48,7 +48,7 @@ export default function SignUp() {
       phn: phn,
     };
     console.log(userr);
-    fetch("https://homeify-server.vercel.app/saveuser", {
+    fetch("http://localhost:5000/saveuser", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -12,7 +12,7 @@ const UserDashboard = (props) => {
 
   useEffect(() => {
     setSpin(true);
-    fetch(`https://homeify-server.vercel.app/fetchcart/${user?.uid}`)
+    fetch(`http://localhost:5000/fetchcart/${user?.uid}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data);

@@ -61,7 +61,7 @@ const SingleService = () => {
       uid: uid,
     };
 
-    fetch("https://homeify-server.vercel.app/addtocart", {
+    fetch("http://localhost:5000/addtocart", {
       method: "POST",
       headers: {
         "content-type": "application/json",
