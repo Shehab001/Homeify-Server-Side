@@ -11,7 +11,8 @@ const AdminAllUser = (props) => {
   const [id, setId] = useState([]);
   const { user, freshh, setFreshh } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
-  console.log(id);
+  let x = 0;
+  //console.log(id);
   const handleDelete = () => {
     setSpin(true);
     fetch(`http://localhost:5000/deleteuser/${id}`)
@@ -68,7 +69,9 @@ const AdminAllUser = (props) => {
           <Box mx={{ sm: 10, xs: 5 }}>
             {props.data.map(
               (data) =>
-                data.role === "user" && (
+                data.role === "user" &&
+                ((x += 1),
+                (
                   <>
                     <Tilt options={{ max: 5, speed: 50, scale: 1 }}>
                       <Grid
@@ -113,9 +116,43 @@ const AdminAllUser = (props) => {
                       </Grid>
                     </Tilt>
                   </>
-                )
+                ))
             )}
           </Box>
+          {x == 0 && (
+            <Box mx={{ sm: 10, xs: 5 }}>
+              <Tilt options={{ max: 5, speed: 50, scale: 1 }}>
+                <Grid
+                  container
+                  sx={{
+                    boxShadow: "5",
+                    backgroundColor: "white",
+                  }}
+                >
+                  <Grid item xs={3} sx={{}}>
+                    <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                      N/A
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3} sx={{}}>
+                    <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                      N/A
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3} sx={{}}>
+                    <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                      N/A
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={2} md={2} sx={{}}>
+                    <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                      N/A
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Tilt>
+            </Box>
+          )}
         </>
       )}
     </Box>

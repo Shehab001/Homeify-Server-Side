@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
@@ -16,11 +16,24 @@ import { motion } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../../Context/Context";
+import Loader from "../Small/Loader/Loader";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  root: {
+    "& .MuiOutlinedInput-root": {
+      height: "26px", // change the height to your desired value
+      borderRadius: 0,
+    },
+  },
+});
 
 const SingleService = () => {
+  const classes = useStyles();
   const data = useLoaderData();
   const { user } = useContext(AuthContext);
-  console.log(user);
+  const [route, setRoute] = useState(0);
+  console.log(data, user);
   const [spin, setSpin] = React.useState(false);
   //console.log(data.price);
   const description = data.description.split(".");
@@ -79,6 +92,43 @@ const SingleService = () => {
         }
       });
   };
+  const handleReport = (event) => {
+    setSpin(true);
+    event.preventDefault();
+
+    const form = event.target;
+    const report = form.report.value;
+
+    //console.log(report);
+    const userr = {
+      pid: data.pid,
+      report: report,
+      email: user.email,
+    };
+    console.log(userr);
+    fetch("http://localhost:5000/savereport", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userr),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //console.log(data);
+        if (data.acknowledged) {
+          //window.location.reload(false);
+          setSpin(false);
+          toast.success("Submitted");
+          // console.log("successfull");
+        } else {
+          setSpin(false);
+          toast.error("Error");
+          // console.log("unsucess");
+        }
+        setRoute(0);
+      });
+  };
 
   return (
     <Box sx={{ m: 10 }}>
@@ -89,27 +139,92 @@ const SingleService = () => {
         transition={{ duration: 1 }}
       >
         <Box>
-          <Typography
-            sx={{
-              fontFamily: "jest",
-              textAlign: "start",
-              letterSpacing: "2px",
-            }}
-          >
-            {data.name}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: "jest",
-              textAlign: "start",
-              letterSpacing: "2px",
-              fontSize: "14px",
-              opacity: 0.5,
-              mb: 1,
-            }}
-          >
-            {data.pid}
-          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box>
+              {" "}
+              <Typography
+                sx={{
+                  fontFamily: "jest",
+                  textAlign: "start",
+                  letterSpacing: "2px",
+                }}
+              >
+                {data.name}
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "jest",
+                  textAlign: "start",
+                  letterSpacing: "2px",
+                  fontSize: "14px",
+                  opacity: 0.5,
+                  mb: 1,
+                }}
+              >
+                {data.pid}
+              </Typography>
+            </Box>
+            <Box>
+              {route === 0 ? (
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    fontFamily: "jest",
+                    letterSpacing: "1px",
+                    backgroundColor: "#222222",
+                    "&:hover": {
+                      background: "#6e3e37",
+                    },
+                    fontSize: "10px",
+                    mt: 2,
+                    mb: 2,
+                  }}
+                  onClick={() => {
+                    setRoute(1);
+                  }}
+                >
+                  Report Item
+                </Button>
+              ) : spin === true ? (
+                <Box width={"10px"} height={"1px"} px={10} py={3}>
+                  <Loader></Loader>
+                </Box>
+              ) : (
+                <form onSubmit={handleReport}>
+                  <TextField
+                    sx={{ mt: 2, mr: 1, fontFamily: "jest" }}
+                    variant="outlined"
+                    name="report"
+                    className={classes.root}
+                    placeholder={"Reason"}
+                    // onChange={(event) => {
+                    //   setList(event.target.value);
+                    // }}
+                  />
+                  <Button
+                    variant="contained"
+                    size="small"
+                    type="submit"
+                    sx={{
+                      fontFamily: "jest",
+                      letterSpacing: "1px",
+                      backgroundColor: "#222222",
+                      "&:hover": {
+                        background: "#6e3e37",
+                      },
+                      fontSize: "10px",
+                      mt: 2,
+                      mb: 2,
+                    }}
+                  >
+                    Submit
+                  </Button>
+                </form>
+              )}
+            </Box>
+          </Box>
+
           <Divider></Divider>
         </Box>
       </motion.div>
@@ -163,33 +278,41 @@ const SingleService = () => {
               </Typography>
               <form onSubmit={handleForm}>
                 <Box sx={{ backgroundColor: "#E6E6E4", p: 5, mt: 4 }}>
-                  <TextField
-                    id="outlined-basic"
-                    label="Quantity"
-                    type="number"
-                    variant="outlined"
-                    name="quantity"
-                    sx={{ mt: 2 }}
-                    required
-                  />
-                  <TextField
-                    id="outlined-basic"
-                    label="Exact Location"
-                    type="text"
-                    variant="outlined"
-                    name="location"
-                    sx={{ mt: { xs: 2 }, ml: { lg: 2 } }}
-                    required
-                  />
-                  <br></br>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    type="submit"
-                    sx={{ mt: 2 }}
-                  >
-                    Add To Cart
-                  </Button>
+                  {spin === true ? (
+                    <Box my={0}>
+                      <Loader></Loader>
+                    </Box>
+                  ) : (
+                    <>
+                      <TextField
+                        id="outlined-basic"
+                        label="Quantity"
+                        type="number"
+                        variant="outlined"
+                        name="quantity"
+                        sx={{ mt: 2 }}
+                        required
+                      />
+                      <TextField
+                        id="outlined-basic"
+                        label="Exact Location"
+                        type="text"
+                        variant="outlined"
+                        name="location"
+                        sx={{ mt: { xs: 2 }, ml: { lg: 2 } }}
+                        required
+                      />
+                      <br></br>
+                      <Button
+                        variant="outlined"
+                        size="large"
+                        type="submit"
+                        sx={{ mt: 2 }}
+                      >
+                        Add To Cart
+                      </Button>
+                    </>
+                  )}
                 </Box>
               </form>
             </motion.div>
