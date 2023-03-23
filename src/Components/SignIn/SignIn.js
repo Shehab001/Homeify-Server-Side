@@ -50,7 +50,8 @@ const SignIn = () => {
       .then((result) => {
         const user = result.user;
         // setUser(user);
-        saveUser(user.email, user.uid);
+        console.log(user);
+        saveUser(user.displayName, user.email, user.uid);
         jwt(user);
         setSpin(false);
         toast.success("Logged In");
@@ -62,9 +63,10 @@ const SignIn = () => {
         console.log(err);
       });
   };
-  const saveUser = (email, uid) => {
+  const saveUser = (name, email, uid) => {
     //console.log(name, url, email);
     const userr = {
+      name: name,
       email: email,
       role: "buyer",
       uid: uid,
@@ -84,7 +86,7 @@ const SignIn = () => {
           toast.success("User Added");
           // console.log("successfull");
         } else {
-          //toast.error("Canceled");
+          toast.error("Canceled");
           // console.log("unsucess");
         }
       });
@@ -122,7 +124,7 @@ const SignIn = () => {
 
   return (
     <>
-      <ToastContainer position="top-center" autoClose={1000} />
+      <ToastContainer position="top-center" autoClose={500} />
       {spin === true ? (
         <Box sx={{ height: "100vh" }}>
           <Loader></Loader>

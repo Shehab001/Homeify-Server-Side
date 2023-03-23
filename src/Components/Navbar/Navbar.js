@@ -50,7 +50,7 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
-  console.log(state);
+  //console.log(state);
 
   const list = (anchor) => (
     <Box

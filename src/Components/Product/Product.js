@@ -20,7 +20,7 @@ const Product = () => {
   const [spin, setSpin] = useState(false);
   const { list, query, rating, price } = useContext(AuthContext);
 
-  console.log(data);
+  //console.log(data);
 
   useEffect(() => {
     setSpin(true);
@@ -52,7 +52,7 @@ const Product = () => {
                     price[0] === 0 &&
                     rating === null
                   ) {
-                    console.log("all");
+                    // console.log("all");
                     return item;
                   } else if (
                     item.category.toLowerCase() === query.toLowerCase() &&

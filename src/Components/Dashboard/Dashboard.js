@@ -6,6 +6,7 @@ import Tilt from "react-tilt";
 import { AuthContext } from "../../Context/Context";
 import DashboardButton from "../Small/DashboardButton";
 import Loader from "../Small/Loader/Loader";
+import AdminDashboard from "./Admin/AdminDashboard";
 import SellerDashboard from "./Seller/SellerDashboard";
 import UserDashboard from "./User/UserDashboard";
 
@@ -17,8 +18,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <SellerDashboard></SellerDashboard>
+      {/* <SellerDashboard></SellerDashboard> */}
       {/* <UserDashboard></UserDashboard> */}
+      <AdminDashboard></AdminDashboard>
       {/* <Box sx={{ backgroundColor: "rgb(36 38 43)", pb: 20 }}>
         <Box
           sx={{

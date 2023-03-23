@@ -22,7 +22,7 @@ const Context = ({ children }) => {
   const [search, setSearch] = useState("Product Name");
 
   const [authControl, setAuthControl] = useState("signin");
-  console.log(list, rating, search, query, price);
+  //console.log(list, rating, search, query, price);
 
   const [state, setState] = React.useState({
     right: false,

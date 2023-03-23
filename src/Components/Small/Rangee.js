@@ -10,7 +10,7 @@ const MAX = 100000;
 const Rangee = () => {
   const [state, setState] = useState([0]);
   const { price, setPrice } = useContext(AuthContext);
-  console.log(price);
+  //console.log(price);
   // state = {
   //   values: [0],
   // };
