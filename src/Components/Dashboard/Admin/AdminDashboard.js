@@ -11,7 +11,7 @@ const AdminDashboard = () => {
   const [route, setRoute] = useState(0);
   const [spin, setSpin] = useState(false);
   const [data, setData] = useState([]);
-  console.log(data);
+  //console.log(data);
 
   useEffect(() => {
     setSpin(true);
@@ -133,11 +133,11 @@ const AdminDashboard = () => {
       ) : (
         <Box>
           {route === 1 ? (
-            <AdminAllSeller></AdminAllSeller>
+            <AdminAllSeller data={data}></AdminAllSeller>
           ) : route === 2 ? (
             <ReportedItems></ReportedItems>
           ) : (
-            <AdminAllUser></AdminAllUser>
+            <AdminAllUser data={data}></AdminAllUser>
           )}
         </Box>
       )}

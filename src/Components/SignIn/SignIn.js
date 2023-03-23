@@ -81,10 +81,12 @@ const SignIn = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         if (data.upsertedId) {
           toast.success("User Added");
           // console.log("successfull");
+        } else if (data.matchedCount) {
+          toast.success("Welcome Back");
         } else {
           toast.error("Canceled");
           // console.log("unsucess");
