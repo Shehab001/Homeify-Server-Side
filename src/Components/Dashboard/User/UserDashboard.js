@@ -8,14 +8,14 @@ const UserDashboard = (props) => {
   const { user } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
   const [cart, setCart] = useState([]);
-  // console.log(user.uid);
+  console.log(cart);
 
   useEffect(() => {
     setSpin(true);
-    fetch(`http://localhost:5000/fetchcart/${user?.uid}`)
+    fetch(`http://localhost:5000/payment/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        // setCart(data);
+        setCart(data);
         setSpin(false);
       });
   }, [user]);
@@ -48,15 +48,17 @@ const UserDashboard = (props) => {
               <Typography sx={{ py: 2, fontWeight: "bold" }}>Name</Typography>
             </Grid>
             <Grid item xs={2.5} md={2.5} sx={{}}>
-              <Typography sx={{ py: 2, fontWeight: "bold" }}>Price</Typography>
-            </Grid>
-            <Grid item xs={2.5} md={2.5} sx={{}}>
-              <Typography sx={{ py: 2, fontWeight: "bold" }}>Time</Typography>
+              <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                Payment Id
+              </Typography>
             </Grid>
             <Grid item xs={2.5} md={2.5} sx={{}}>
               <Typography sx={{ py: 2, fontWeight: "bold" }}>
                 Location
               </Typography>
+            </Grid>
+            <Grid item xs={2.5} md={2.5} sx={{}}>
+              <Typography sx={{ py: 2, fontWeight: "bold" }}>Price</Typography>
             </Grid>
             <Grid item xs={2} md={2} sx={{}}>
               <Typography sx={{ py: 2, fontWeight: "bold" }}>Status</Typography>
@@ -94,18 +96,7 @@ const UserDashboard = (props) => {
                         fontSize: { xs: "10px", sm: "16px" },
                       }}
                     >
-                      {data.price}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={2.5} md={2.5} sx={{}}>
-                    <Typography
-                      sx={{
-                        py: 2,
-                        fontWeight: "bold",
-                        fontSize: { xs: "10px", sm: "16px" },
-                      }}
-                    >
-                      {data.time}
+                      {data.paymentId}
                     </Typography>
                   </Grid>
                   <Grid item xs={2.5} md={2.5} sx={{}}>
@@ -119,6 +110,17 @@ const UserDashboard = (props) => {
                       {data.location}
                     </Typography>
                   </Grid>
+                  <Grid item xs={2.5} md={2.5} sx={{}}>
+                    <Typography
+                      sx={{
+                        py: 2,
+                        fontWeight: "bold",
+                        fontSize: { xs: "10px", sm: "16px" },
+                      }}
+                    >
+                      {data.total}
+                    </Typography>
+                  </Grid>
                   <Grid item xs={2} md={2} sx={{}}>
                     <Typography
                       sx={{
@@ -127,7 +129,7 @@ const UserDashboard = (props) => {
                         fontSize: { xs: "10px", sm: "16px" },
                       }}
                     >
-                      Pending
+                      {data.status}
                     </Typography>
                   </Grid>
                 </Grid>
