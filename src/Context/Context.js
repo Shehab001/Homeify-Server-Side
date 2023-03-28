@@ -27,6 +27,10 @@ const Context = ({ children }) => {
     right: false,
   });
   //console.log(state.right);
+  //cart info
+  const [cartInfo, setCartInfo] = useState([]);
+  //const updateCartInfo = (newState) => setCartInfo(newState);
+  // console.log(cartInfo);
 
   const toggleDrawer = (anchor, open) => (event) => {
     // alert("hi");
@@ -95,6 +99,8 @@ const Context = ({ children }) => {
     setSearch,
     freshh,
     setFreshh,
+    cartInfo,
+    setCartInfo,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

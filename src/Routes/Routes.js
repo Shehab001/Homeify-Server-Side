@@ -1,4 +1,5 @@
 import { Box } from "@mui/system";
+import { Elements } from "@stripe/react-stripe-js";
 import { createBrowserRouter } from "react-router-dom";
 import AboutUs from "../Components/AboutUs/AboutUs";
 import OurTeam from "../Components/AboutUs/OurTeam";
@@ -7,6 +8,8 @@ import Contact from "../Components/Contact.js/Contact";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import UserDashboard from "../Components/Dashboard/User/UserDashboard";
 import Navbar from "../Components/Navbar/Navbar";
+import CheckoutForm from "../Components/Payment/CheckoutForm";
+import Payment from "../Components/Payment/Payment";
 import Cart from "../Components/Product/Cart";
 import Category from "../Components/Product/Category";
 import ProductNavbar from "../Components/Product/ProductNavbar";
@@ -72,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/addservice",
         element: <UserDashboard></UserDashboard>,
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>,
       },
       {
         path: "/singleservice/:id",

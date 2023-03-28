@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, Typography } from "@mui/material";
+import { Button, Divider, Grid, Modal, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import Tilt from "react-tilt";
@@ -8,13 +8,18 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "../Small/Loader/Loader";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import Buttonn from "../Small/Buttonn";
+import Payment from "../Payment/Payment";
 
 const Cart = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setCartInfo, updateCartInfo } = useContext(AuthContext);
   const [spin, setSpin] = useState(false);
   const [fresh, setFresh] = useState(false);
   const [cart, setCart] = useState([]);
   const [id, setId] = useState([]);
+  //modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   //console.log(id);
 
   let total = 0;
@@ -31,9 +36,13 @@ const Cart = () => {
       .then((res) => res.json())
       .then((data) => {
         setCart(data);
+        setCartInfo(data);
         setSpin(false);
       });
   }, [user, fresh]);
+
+  //save to context state
+  // cart.map((data) => updateCartInfo([...cartInfo, data]));
 
   const handleDelete = () => {
     fetch(`http://localhost:5000/deletecartproduct/${id}`)
@@ -47,6 +56,17 @@ const Cart = () => {
           setFresh(!fresh);
         }
       });
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "white",
+    boxShadow: 24,
+    p: 4,
   };
 
   return (
@@ -183,7 +203,7 @@ const Cart = () => {
                             </Typography>
                           </Grid>
                           <Grid item xs={2} md={2} sx={{}}>
-                            <Typography sx={{ py: 2, fontWeight: "bold" }}>
+                            <Typography sx={{ pt: 1, fontWeight: "bold" }}>
                               <RemoveCircleOutlineIcon
                                 sx={{
                                   fontSize: {
@@ -240,6 +260,7 @@ const Cart = () => {
                       background: "#6e3e37",
                     },
                   }}
+                  onClick={handleOpen}
                 >
                   Purchase Now
                 </Button>
@@ -247,6 +268,17 @@ const Cart = () => {
               <Divider sx={{ mx: 10 }}></Divider>
             </Box>
           )}
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Payment total={total}></Payment>
+            </Box>
+          </Modal>
+
           {cart.length < 1 && (
             <>
               {" "}

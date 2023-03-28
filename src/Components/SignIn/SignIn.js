@@ -70,6 +70,7 @@ const SignIn = () => {
       email: email,
       role: "user",
       uid: uid,
+      phn: "N/A",
     };
     console.log(userr);
     fetch("http://localhost:5000/saveuser", {

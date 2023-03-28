@@ -10,7 +10,7 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [spin, setSpin] = useState(false);
-  //console.log(user.uid, data);
+  console.log(user.uid, data);
 
   useEffect(() => {
     setSpin(true);
@@ -30,7 +30,7 @@ const Dashboard = () => {
         </Box>
       ) : (
         <Box>
-          {data?.role === "user" ? (
+          {data?.role === "admin" ? (
             <AdminDashboard></AdminDashboard>
           ) : data?.role === "seller" ? (
             <SellerDashboard></SellerDashboard>
