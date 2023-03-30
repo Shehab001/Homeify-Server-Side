@@ -8,15 +8,18 @@ import {
   CardElement,
 } from "@stripe/react-stripe-js";
 import "./Payment.css";
-import { Button, CardActions, Typography } from "@mui/material";
+import { Button, CardActions, LinearProgress, Typography } from "@mui/material";
 import { AuthContext } from "../../Context/Context";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/system";
+import Loader from "../Small/Loader/Loader";
 
 export default function CheckoutForm({ total }) {
   const { user, cartInfo } = useContext(AuthContext);
   const [success, setSuccess] = useState(false);
+  const [spin, setSpin] = useState(false);
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -83,6 +86,7 @@ export default function CheckoutForm({ total }) {
 
   const handleSubmit = async (event) => {
     // Block native form submission.
+    setSpin(true);
     event.preventDefault();
 
     // Get a reference to a mounted CardElement. Elements knows how
@@ -137,6 +141,7 @@ export default function CheckoutForm({ total }) {
     if (paymentIntent.status === "succeeded") {
     }
     savePayment(paymentIntent.id);
+    setSpin(false);
   };
 
   const CARD_OPTIONS = {
@@ -193,6 +198,12 @@ export default function CheckoutForm({ total }) {
               <CardCvcElement options={CARD_OPTIONS} />
             </div>
           </fieldset>
+          {spin === true && (
+            <Box sx={{ width: "90%", mx: "auto" }}>
+              <LinearProgress sx={{ backgroundColor: "black" }} />
+            </Box>
+          )}
+
           <CardActions
             sx={{ display: "flex", justifyContent: "center", mt: 5 }}
           >
