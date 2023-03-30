@@ -193,7 +193,7 @@ function Navbar() {
                     },
                   }}
                 >
-                  <Link to="/product" style={{ textDecoration: "none" }}>
+                  <Link to="/products" style={{ textDecoration: "none" }}>
                     <Typography textAlign="center" sx={{ color: "black" }}>
                       Products
                     </Typography>

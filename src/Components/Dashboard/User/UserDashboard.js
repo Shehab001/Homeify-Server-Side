@@ -29,6 +29,7 @@ const UserDashboard = (props) => {
     fetch(`http://localhost:5000/deletedashboardproduct/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.deletedCount > 0) {
           toast.success("Deleted");
           setFresh(!fresh);
@@ -143,6 +144,7 @@ const UserDashboard = (props) => {
                             py: 2,
                             fontWeight: "bold",
                             fontSize: { xs: "10px", sm: "16px" },
+                            ml: 2,
                           }}
                         >
                           {data.location}

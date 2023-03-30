@@ -90,7 +90,7 @@ export default function SignUp() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        //console.log(user);
         // setSuccess(true);
         form.reset();
         setError("");
@@ -104,6 +104,9 @@ export default function SignUp() {
       })
       .catch((error) => {
         const errorMessage = error.message;
+        setSpin(false);
+        toast.error("Something Went Wrong");
+
         setError(errorMessage);
         // ..
       });

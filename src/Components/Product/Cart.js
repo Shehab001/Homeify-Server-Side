@@ -143,6 +143,7 @@ const Cart = () => {
                           sx={{
                             boxShadow: "5",
                             backgroundColor: "white",
+                            alignItems: "center",
                           }}
                         >
                           <Grid item xs={2} md={2} sx={{}}>

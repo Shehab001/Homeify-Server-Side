@@ -131,7 +131,7 @@ const SingleService = () => {
   };
 
   return (
-    <Box sx={{ m: 10 }}>
+    <Box sx={{ my: 10, mx: { xs: 2, sm: 5, md: 10 } }}>
       <ToastContainer position="top-center" autoClose={1000} />
       <motion.div
         initial={{ x: -150, opacity: 0 }}

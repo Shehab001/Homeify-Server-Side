@@ -306,7 +306,7 @@ const SellerAddProduct = () => {
                   <TextField
                     required
                     style={{ width: "100%" }}
-                    placeholder="Enter Description & avoid full stop in last line.."
+                    placeholder="Enter Description,must add full-stop in every line except last line.Don't use full-stop in middle of sentence."
                     name="des"
                     multiline
                     rows={4}
@@ -326,7 +326,7 @@ const SellerAddProduct = () => {
                     variant="contained"
                   >
                     {" "}
-                    Send Message{" "}
+                    Add Product{" "}
                   </Button>{" "}
                 </motion.div>{" "}
               </Grid>

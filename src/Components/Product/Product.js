@@ -19,18 +19,27 @@ const Product = () => {
   const [data, setData] = useState([]);
   const [spin, setSpin] = useState(false);
   const { list, query, rating, price } = useContext(AuthContext);
-
-  //console.log(data);
+  // pagination
+  const [count, setCount] = useState(1);
+  const [page, setPage] = useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+  // console.log(page);
+  console.log("hi", count);
 
   useEffect(() => {
     setSpin(true);
-    fetch("http://localhost:5000/allproduct")
+    fetch(`http://localhost:5000/allproduct?page=${page}`)
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
+        setData(data.products);
+
+        setCount(Math.ceil(data.count / 8));
+        // console.log(count);
         setSpin(false);
       });
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -236,7 +245,12 @@ const Product = () => {
               {" "}
               <Box sx={{ justifyContent: "center", display: "flex", mt: 5 }}>
                 <Stack spacing={2}>
-                  <Pagination count={10} shape="rounded" />
+                  <Pagination
+                    count={count}
+                    page={page}
+                    shape="rounded"
+                    onChange={handleChange}
+                  />
                 </Stack>
               </Box>
             </motion.div>
@@ -248,9 +262,3 @@ const Product = () => {
 };
 
 export default Product;
-// else if (
-//                     item.name.toLowerCase().includes(list.toLowerCase())
-//                   ) {
-//                     console.log(item.name.toLowerCase(), list.toLowerCase());
-//                     return item;
-//                   }
