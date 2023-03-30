@@ -47,6 +47,12 @@ export default function CheckoutForm({ total }) {
       .then((data) => setClientSecret(data.clientSecret));
   }, [total]);
 
+  const cartDelete = () => {
+    fetch("http://localhost:5000/cartdelete")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   const savePayment = (paymentId) => {
     console.log(paymentId);
     const productName = cartInfo.map((product) => product.name);
@@ -71,7 +77,8 @@ export default function CheckoutForm({ total }) {
       .then((data) => {
         //console.log(data);
         if (data.acknowledged) {
-          console.log(data);
+          //console.log(data);
+          cartDelete();
           navigate("/dashboard");
           toast.success("Payment Done");
 
