@@ -2,7 +2,7 @@ This furniture selling website built with React, Express, Node.js, Firebase, and
 
 <h2>Log In Details</h2>
 <h3>user@gmail.com</h3>
-<h3>msc@gmail.com</h3>   -> seller
+<h3>msc@gmail.com [seller]</h3>
 <h3>admin@gmail.com</h3>
 <h3>Password: 00000000</h3>
 
