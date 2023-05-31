@@ -6,5 +6,5 @@ This furniture selling website built with React, Express, Node.js, Firebase, and
 <h3>admin@gmail.com</h3>
 <h3>Password: 00000000</h3>
 
-<h2><a href="https://github.com/Shehab001/Homeify_Server_Side"></a></h2>
+<h2><a href="https://github.com/Shehab001/Homeify_Server_Side">Server Side Code</a></h2>
 
